@@ -12,15 +12,35 @@ function Auth() {
             <h6>Explore the ideas throughot the world</h6>
         </div>
     </div>
-    <SignUp/>
+    <Login/>
    </div>
+  )
+}
+
+function Login(){
+  return(
+    <div className="a-right">
+      <form className="infoform authForm">
+        <h3>Login</h3>
+        <div>
+          <input type="text" name='username' className="infoinput" placeholder='User name' />
+        </div>
+        <div>
+          <input type="text" name='password' placeholder='Password' className="infoinput" />
+        </div>
+        <div>
+          <span style={{fontSize:'12px'}} >Create New Account?</span>
+        </div>
+        <button className='button infobutton' type='submit' >Signup</button>
+      </form>
+    </div>
   )
 }
 
 function SignUp(){
   return (
     <div className="a-right">
-      <div className="infoform">
+      <form className="infoform authForm">
 
         <h3>Sign Up</h3>
         <div>
@@ -34,7 +54,11 @@ function SignUp(){
           <input type="text" name='password' placeholder='Password' className="infoinput" />
           <input type="text" name='password' Confirm placeholder='Password' className="infoinput" />
         </div>
-      </div>
+        <div>
+          <span style={{fontSize:'12px'}} >Already i have an account!</span>
+        </div>
+        <button className='button infobutton' type='submit' >Signup</button>
+      </form>
     </div>
   )
 }
