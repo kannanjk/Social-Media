@@ -6,13 +6,13 @@ export const postData=[
     {
         img:img1,
         name:'jishnu',
-        desc:'happy nwe year',
+        desc:'happy new year',
         likes:4679,
         liked:true
     },
     {
         img:img2,
-        name:'kannna',
+        name:'kannan',
         desc:'happy xmas',
         likes:8346,
         liked:false

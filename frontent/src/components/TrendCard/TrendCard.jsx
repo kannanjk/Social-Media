@@ -11,7 +11,7 @@ function TrendCard() {
                 return (
                     <div className="trend">
                         <span>#{trend.name} </span>
-                        <span>{trend.sheres}k sheres </span>
+                        <span>{trend.sheres}k shares </span>
                     </div>
                 )
             })

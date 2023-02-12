@@ -21,7 +21,7 @@ function RightSide() {
       <TrendCard />
       <button className="button r-button"
         onClick={() => setModelopened(true)} >
-        shere
+        share
       </button>
       <ShereModel modalOpened={modelopened}
         setModalOpened={setModelopened} />

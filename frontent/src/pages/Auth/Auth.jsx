@@ -1,14 +1,45 @@
 import React, { useState } from 'react'
 import './Auth.css'
 import login from '../../image/log.png'
+import { useDispatch } from 'react-redux'
+import { logIn, signUp } from '../../Api/AuthRequest'
 
 function Auth() {
   const [isSignup, setIsSignup] = useState(true)
-  const [data,setdata] = useState({firstname:"",lastname:"",email:"",password:"",confirmpass:""})
-  
-  const [confirmPass,setConfirmPss] = useState(false)
-  const handleChange = (e)=>{
-    setdata({...data,[e.target.name]:e.target.value})
+  const dispatch = useDispatch()
+  const [data, setdata] = useState({
+    firstname: "", 
+    lastname: "",
+    email: "",
+    password: "",
+    confirmpass: ""
+  })
+
+  const [confirmPass, setConfirmPss] = useState(true)
+  const handleChange = (e) => {
+    setdata({ ...data, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (isSignup) {
+      data.password === data.confirmpass 
+      ? dispatch(signUp(data)) 
+      : setConfirmPss(false)
+    }else{
+      dispatch(logIn(data))
+    }
+  }
+
+  const reseForm = () => {
+    setConfirmPss(true)
+    setdata({
+      firstname: "",
+      lastname: "",
+      email: "",
+      password: "",
+      confirmpass: ""
+    })
   }
 
   return (
@@ -23,54 +54,61 @@ function Auth() {
       </div>
       {/*  Right side  */}
       <div className="a-right">
-        <form className="infoform authForm">
+        <form className="infoform authForm" onSubmit={handleSubmit} >
           <h3> {isSignup ? "Sign Up" : "Log In"} </h3>
           {
             isSignup && (
               <div>
-                <input type="text"
-                  name='fistname'
-                  placeholder='First Name'
+                <input type="text" name='firstname'
+                  placeholder='first Name'
                   className="infoinput"
                   onChange={handleChange}
+                  value={data.firstname}
                 />
                 <input type="text" name='lastname'
                   placeholder='Last Name'
                   className="infoinput"
                   onChange={handleChange}
+                  value={data.lastname}
                 />
               </div>
             )
           }
           <div>
             <input type="email" name='email' className="infoinput"
-             placeholder='Email' 
-             onChange={handleChange}
-             />
+              placeholder='Email'
+              onChange={handleChange}
+              value={data.email}
+            />
           </div>
           <div>
             <input type="password"
               name='password'
               placeholder='Password'
-              className="infoinput" 
+              className="infoinput"
               onChange={handleChange}
-              />
+              value={data.password}
+            />
             {
-              isSignup && (<input type="password" name='confirmpass' 
-               placeholder='confirmPassword' 
+              isSignup && (<input type="password" name='confirmpass'
+                placeholder='confirmPassword'
                 className="infoinput"
                 onChange={handleChange}
-                />
-            )}
+                value={data.confirmpass}
+              />
+              )}
           </div>
-          <span style={{display:confirmPass ? "none" : "block" ,color:"red",fontSize:"12px"}} >
+          <span style={{ display: confirmPass ? "none" : "block", color: "red", fontSize: "12px", alignSelf: "flex-end", marginRight: "10px" }} >
             * Confirm Password is not same
           </span>
           <div>
-            <span style={{ fontSize: '12px', cursor:'pointer' }}
-             onClick={()=>setIsSignup((prev)=>!prev)}>
-             {isSignup ? "Already i have an account!" : "Create New Account ?"}
-              </span>
+            <span style={{ fontSize: '12px', cursor: 'pointer' }}
+              onClick={() => {
+                setIsSignup((prev) => !prev);
+                reseForm()
+              }}>
+              {isSignup ? "Already i have an account!" : "Create New Account ?"}
+            </span>
           </div>
           <button className='button infobutton' type='submit' >{isSignup ? "Sign Up" : "Log In"}</button>
         </form>

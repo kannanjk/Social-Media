@@ -53,7 +53,7 @@ function PostShere() {
                         Shedule
                     </div>
                     <button className='button ps-button' >
-                        Shere
+                        Share
                     </button>
                     <div style={{display:'none'}} >
                         <input type="file" 
