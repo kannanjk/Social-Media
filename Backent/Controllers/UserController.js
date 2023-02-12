@@ -22,30 +22,30 @@ export const updateUser = async (req, res) => {
     const { currentUserId, currentUserAdminStatus, password } = req.body
 
     if (id === currentUserId || currentUserAdminStatus) {
-       
+
         try {
 
             if (password) {
-            const salt = await bcrypt.genSalt(10)
-            req.body.password = await bcrypt.hash(password,salt)
+                const salt = await bcrypt.genSalt(10)
+                req.body.password = await bcrypt.hash(password, salt)
             }
 
-             const user = await UserModel.findByIdAndUpdate(id, req.body, { new: true })
+            const user = await UserModel.findByIdAndUpdate(id, req.body, { new: true })
             res.status(200).json(user)
         } catch (error) {
             res.status(500).json(error)
         }
     }
-    else{
+    else {
         res.status(403).json("Access Denined! You can only update You own profile")
     }
 }
 
 // delete user
-export const deleteUser = async (req,res)=>{
+export const deleteUser = async (req, res) => {
     const id = req.params.id
     console.log(id);
-    const {currentUserId,currentUserAdminStatus} = req.body
+    const { currentUserId, currentUserAdminStatus } = req.body
 
     if (currentUserId === id || currentUserAdminStatus) {
         try {
@@ -54,27 +54,30 @@ export const deleteUser = async (req,res)=>{
         } catch (error) {
             res.status(500).json(error)
         }
-    }else{
+    } else {
         res.status(403).json("Access Denined! You can only delete You own profile")
     }
 }
 
 // Follow a User
-export const followUser = async (req,res)=>{
+export const followUser = async (req, res) => {
     const id = req.params.id
 
-    const {currentUserId} = req.body
+    const { currentUserId } = req.body
 
     if (currentUserId === id) {
         res.status(403).json("Action forbidden")
-    }else{
+    } else {
         try {
-            const followUser = UserModel.findById(id)
-            const followingUser = UserModel.findById(currentUserId)
+            const followUser = await UserModel.findById(id)
+            const followingUser = await UserModel.findById(currentUserId)
 
-            if (!followUser.followUser.includes(currentUserId)) {
-                await followUser.updateOne({$push:{followers:currentUserId}})
-                await followingUser.updateOne({$push:{following:id}})
+            if (!followUser.followers.includes(currentUserId)) {
+                await followUser.updateOne({ $push: { followers: currentUserId } })
+                await followingUser.updateOne({ $push: { following: id } })
+                res.status(200).json("User followed!")
+            } else {
+                res.status(403).json("User already follwed you")
             }
         } catch (error) {
             res.status(500).json(error)
