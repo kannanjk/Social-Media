@@ -4,13 +4,18 @@ import bcrypt from 'bcrypt'
 // Register a new User 
 export const registerUser = async (req, res) => {
 
-    const { firstname, lastname, username, password } = req.body
 
     const salt = await bcrypt.genSalt(10)
-    const hashedpass = await bcrypt.hash(password, salt)
-
-    const newUser = new UserModel({ firstname, lastname, username, password: hashedpass })
+    const hashedpass = await bcrypt.hash(req.body.password, salt)
+    req.body.password = 
+    req.body.password = hashedpass
+    const newUser = new UserModel( req.body )
+    const {username} = req.body
     try {
+        const oldUser = await UserModel.findOne({username})
+        if (oldUser) {
+            return res.status(400).json({maessage:"Username is already registerd"})
+        }
         await newUser.save()
         res.status(200).json(newUser)
     } catch (error) {

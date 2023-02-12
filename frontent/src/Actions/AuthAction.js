@@ -1,6 +1,6 @@
 import * as AuthApi from '../Api/AuthRequest'
 
-export const login = (formData) => async(dispatch) => {
+export const logIn = (formData) => async(dispatch) => {
     dispatch({type:"AUTH_START"})
     try {
         const {data} = await AuthApi.logIn(formData)

@@ -1,16 +1,18 @@
 import React, { useState } from 'react'
 import './Auth.css'
 import login from '../../image/log.png'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { logIn, signUp } from '../../Api/AuthRequest'
 
 function Auth() {
-  const [isSignup, setIsSignup] = useState(true)
   const dispatch = useDispatch()
+  const loading = useSelector((state)=>state.authReducer.loading)
+  const [isSignup, setIsSignup] = useState(true)
+  console.log(loading)
   const [data, setdata] = useState({
     firstname: "", 
     lastname: "",
-    email: "",
+    username: "",
     password: "",
     confirmpass: ""
   })
@@ -23,7 +25,7 @@ function Auth() {
   const handleSubmit = (e) => {
     e.preventDefault()
     if (isSignup) {
-      data.password === data.confirmpass 
+     data.password === data.confirmpass 
       ? dispatch(signUp(data)) 
       : setConfirmPss(false)
     }else{
@@ -36,7 +38,7 @@ function Auth() {
     setdata({
       firstname: "",
       lastname: "",
-      email: "",
+      username: "",
       password: "",
       confirmpass: ""
     })
@@ -75,10 +77,10 @@ function Auth() {
             )
           }
           <div>
-            <input type="email" name='email' className="infoinput"
+            <input type="email" name='username' className="infoinput"
               placeholder='Email'
               onChange={handleChange}
-              value={data.email}
+              value={data.username}
             />
           </div>
           <div>
@@ -110,7 +112,9 @@ function Auth() {
               {isSignup ? "Already i have an account!" : "Create New Account ?"}
             </span>
           </div>
-          <button className='button infobutton' type='submit' >{isSignup ? "Sign Up" : "Log In"}</button>
+          <button className='button infobutton' type='submit' disabled={loading} >
+            {loading?"Loading...": isSignup ? "Sign Up" : "Log In"}
+            </button>
         </form>
       </div>
     </div>
