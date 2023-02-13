@@ -4,9 +4,10 @@ import {
     compose
 } from "redux"
 import thunk from "redux-thunk"
-import { reducers } from "../Reducers/indes.js"
+import { reducers } from "../Reducers/indes"
 
 function saveToLocalStorage(store) {
+    alert("yt")
     try {
         const serialzedStore = JSON.stringify(store)
         window.localStorage.setItem('store', serialzedStore)

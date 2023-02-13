@@ -6,7 +6,7 @@ import { logIn, signUp } from '../../Api/AuthRequest'
 
 function Auth() {
   const dispatch = useDispatch()
-  const loading = useSelector((state) => state.authReducer.loading)
+  const loading = useSelector((state) => state.authReducer.authData)
   const [isSignup, setIsSignup] = useState(true)
   console.log(loading)
   const [data, setdata] = useState({
@@ -24,9 +24,9 @@ function Auth() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-     
     if (isSignup) {
-      data.password === data.confirmpass
+      alert(data.password + data.confirmpass)
+        (data.password === data.confirmpass)
         ? dispatch(signUp(data))
         : setConfirmPss(false)
     } else {

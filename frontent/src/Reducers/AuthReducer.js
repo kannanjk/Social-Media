@@ -1,6 +1,7 @@
 const authReducer = (
     state = { authData: null, loading: false, error: false },
     action) => {
+        alert("red")
     switch (action.type) {
         case "AUTH_START":
             return { ...state, loading: true, error: false }
