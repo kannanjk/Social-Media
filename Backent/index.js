@@ -28,7 +28,7 @@ mongoose
      )).catch((e)=>{
         console.log(e);
      })
-
+   
      // useage of routes
      app.use('/auth',AuthRoute)
      app.use('/user',UserRoute)

@@ -1,31 +1,31 @@
 import UserModel from "../Models/UserModel.js";
 import bcrypt from 'bcrypt'
-import  jwt  from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
 // Register a new User 
 export const registerUser = async (req, res) => {
 
     const salt = await bcrypt.genSalt(10)
     const hashedpass = await bcrypt.hash(req.body.password, salt)
-    req.body.password = 
-    req.body.password = hashedpass
-    const newUser = new UserModel( req.body )
-    const {username} = req.body
+    req.body.password =
+        req.body.password = hashedpass
+    const newUser = new UserModel(req.body)
+    const { username } = req.body
     try {
-        const oldUser = await UserModel.findOne({username})
+        const oldUser = await UserModel.findOne({ username })
         if (oldUser) {
-            return res.status(400).json({maessage:"Username is already registerd"})
+            return res.status(400).json({ maessage: "Username is already registerd" })
         }
-      const user = await newUser.save()
+        const user = await newUser.save()
         const token = jwt.sign({
-            username:user.username, id:user._id
-        }, process.env.JWT_KEY,{expiresIn:'1h'} )
-        res.status(200).json({user,token})
+            username: user.username, id: user._id
+        }, process.env.JWT_KEY, { expiresIn: '1h' })
+        res.status(200).json({ user, token })
     } catch (error) {
         res.status(500).json({ message: error.message })
     }
 }
-     
+
 // login user
 export const loginUser = async (req, res) => {
     const { username, password } = req.body
@@ -35,16 +35,20 @@ export const loginUser = async (req, res) => {
 
         if (user) {
 
-            console.log(user);
-           
             const validity = await bcrypt.compare(password, user.password)
-           
-            console.log(password);
-            validity? res.status(200).json(user): res.status(404).json("Wrong Password")
+
+            if (!validity) {
+                res.status(400).json("Wrong password")
+            } else {
+                const token = jwt.sign({
+                    username: user.username, id: user._id
+                }, process.env.JWT_KEY, { expiresIn: '1h' })
+                res.status(200).json({user,token})
+            }
         } else {
             res.status(404).json("user dose not exist")
         }
     } catch (error) {
-       res.status(500).json({message:error.message})
+        res.status(500).json({ message: error.message })
     }
 }
