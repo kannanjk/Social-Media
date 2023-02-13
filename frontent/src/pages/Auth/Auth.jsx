@@ -6,11 +6,11 @@ import { logIn, signUp } from '../../Api/AuthRequest'
 
 function Auth() {
   const dispatch = useDispatch()
-  const loading = useSelector((state)=>state.authReducer.loading)
+  const loading = useSelector((state) => state.authReducer.loading)
   const [isSignup, setIsSignup] = useState(true)
   console.log(loading)
   const [data, setdata] = useState({
-    firstname: "", 
+    firstname: "",
     lastname: "",
     username: "",
     password: "",
@@ -24,11 +24,12 @@ function Auth() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+     
     if (isSignup) {
-     data.password === data.confirmpass 
-      ? dispatch(signUp(data)) 
-      : setConfirmPss(false)
-    }else{
+      data.password === data.confirmpass
+        ? dispatch(signUp(data))
+        : setConfirmPss(false)
+    } else {
       dispatch(logIn(data))
     }
   }
@@ -113,8 +114,8 @@ function Auth() {
             </span>
           </div>
           <button className='button infobutton' type='submit' disabled={loading} >
-            {loading?"Loading...": isSignup ? "Sign Up" : "Log In"}
-            </button>
+            {loading ? "Loading..." : isSignup ? "Sign Up" : "Log In"}
+          </button>
         </form>
       </div>
     </div>

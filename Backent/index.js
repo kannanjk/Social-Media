@@ -15,11 +15,10 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }))
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }))
 mongoose.set('strictQuery', true);
 app.use(cors())
-
 dotenv.config()
 
 mongoose
-    .connect("mongodb://localhost:27017", {
+    .connect('mongodb+srv://jishnu:iV1nYHf77FYnp8Ju@cluster0.zppmaeb.mongodb.net/SocialMedia?retryWrites=true&w=majority', {
         useNewUrlParser: true,
         useUnifiedTopology: true
     })

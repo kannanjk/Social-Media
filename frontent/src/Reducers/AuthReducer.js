@@ -2,7 +2,7 @@ const authReducer = (
     state = { authData: null, loading: false, error: false },
     action) => {
     switch (action.type) {
-        case "AUTH-START":
+        case "AUTH_START":
             return { ...state, loading: true, error: false }
         case "AUTH_SUCCESS":
             localStorage.setItem("profile", JSON.stringify({ ...action?.data }))
@@ -12,6 +12,6 @@ const authReducer = (
         default:
             return state
     }
-} 
+}
 
-export default authReducer
+export default authReducer  
