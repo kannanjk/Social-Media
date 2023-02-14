@@ -1,5 +1,7 @@
 import PostModel from "../Models/PostModel.js";
 import mongoose from "mongoose";
+import UserMode from '../Models/UserModel.js'
+import UserModel from "../Models/UserModel.js";
 
 // Create New Post 
 export const createPost = async (req, res) => {
@@ -70,7 +72,7 @@ export const likePost = async (req, res) => {
         if (!post.likes.includes(userId)) {
             await post.updateOne({ $push: { likes: userId } })
             res.status(200).json("post liked")
-        }else{
+        } else {
             await post.updateOne({ $pull: { likes: userId } })
             res.status(200).json("post Unliked")
         }
@@ -78,3 +80,42 @@ export const likePost = async (req, res) => {
         res.status(500).json(error)
     }
 }
+
+// get timeline post
+export const getTimeLinePost = async (req, res) => {
+    const userId = req.params.id
+
+    try {
+        const currentUserPost = await PostModel.find({ userId: userId })
+        const followingPost = await UserModel.aggregate([
+            {
+                $match: {
+                    _id: new mongoose.Types.ObjectId(userId)
+                }
+            },
+            {
+                $lookup: {
+                    from: "posts",
+                    localField: "following",
+                    foreignField: "userId",
+                    as: "followingPost"
+                }
+            },
+            {
+                $project: {
+                    followingPost: 1,
+                    _id: 0
+                }
+            }
+        ])
+        res
+        .status(200)
+        .json(currentUserPost.concat(...followingPost[0].followingPost)
+        .sort((a,b)=>{
+            return b.createAt - a.createAt
+        })
+        )
+    } catch (error) {
+        res.status(500).json(error)
+    }
+}        
