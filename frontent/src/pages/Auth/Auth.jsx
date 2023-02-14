@@ -25,14 +25,13 @@ function Auth() {
   const handleSubmit = (e) => {
     e.preventDefault()
     if (isSignup) {
-      alert(data.password + data.confirmpass)
         (data.password === data.confirmpass)
         ? dispatch(signUp(data))
         : setConfirmPss(false)
     } else {
       dispatch(logIn(data))
     }
-  }
+  } 
 
   const reseForm = () => {
     setConfirmPss(true)
