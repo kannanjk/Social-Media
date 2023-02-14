@@ -50,11 +50,27 @@ export const deletePost = async (req, res) => {
     try {
         const post = await PostModel.findById(id)
         if (post.userId === userId) {
-            await post.deleteOne( )
+            await post.deleteOne()
             res.status(200).json("post Deleted")
         } else {
             res.status(403).json("Action forbidden")
         }
+    } catch (error) {
+        res.status(500).json(error)
+    }
+}
+
+// like/dislike a post
+export const likePost = async (req, res) => {
+    const id = req.params.id
+    const { userId } = req.body
+
+    try {
+        const post = await PostModel.findById(id)
+        if (!post.likes.includes(userId)) {
+
+        } await post.updateOne({ $push: { likes: userId } })
+        res.status(200).json("post liked")
     } catch (error) {
         res.status(500).json(error)
     }
