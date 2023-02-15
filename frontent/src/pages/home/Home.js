@@ -3,6 +3,7 @@ import PostSide from '../../components/PostSide/PostSide'
 import Profile from '../../components/Profile/Profile'
 import RightSide from '../../components/RightSide/RightSide'
 import './Home.css'
+import ProfileSide from '../../components/PostSide/PostSide'
 
 function Home() {
   return (

@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import './Auth.css'
 import login from '../../image/log.png'
 import { useDispatch, useSelector } from 'react-redux'
-import { logIn, signUp } from '../../Api/AuthRequest'
+import { logIn, signUp } from '../../Actions/AuthAction'
 
 function Auth() {
   const dispatch = useDispatch()
-  const loading = useSelector((state) => state.authReducer.authData)
+  const loading = useSelector((state) => state.authReducer.loading)
   const [isSignup, setIsSignup] = useState(true)
   console.log(loading)
   const [data, setdata] = useState({
@@ -25,13 +25,13 @@ function Auth() {
   const handleSubmit = (e) => {
     e.preventDefault()
     if (isSignup) {
-        (data.password === data.confirmpass)
+      data.password === data.confirmpass
         ? dispatch(signUp(data))
         : setConfirmPss(false)
     } else {
       dispatch(logIn(data))
     }
-  } 
+  }
 
   const reseForm = () => {
     setConfirmPss(true)
@@ -92,13 +92,13 @@ function Auth() {
               value={data.password}
             />
             {
-              isSignup && (<input type="password" name='confirmpass'
+              isSignup && <input type="password" name='confirmpass'
                 placeholder='confirmPassword'
                 className="infoinput"
                 onChange={handleChange}
                 value={data.confirmpass}
               />
-              )}
+            }
           </div>
           <span style={{ display: confirmPass ? "none" : "block", color: "red", fontSize: "12px", alignSelf: "flex-end", marginRight: "10px" }} >
             * Confirm Password is not same
