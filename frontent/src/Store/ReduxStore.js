@@ -29,4 +29,4 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const persistedState = loadFormLocalStore()
 const store = createStore(reducers, persistedState, composeEnhancers(applyMiddleware(thunk)))
 store.subscribe(() => saveToLocalStorage(store.getState()))
-export default store
+export default store 
