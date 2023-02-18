@@ -1,11 +1,12 @@
 import React from 'react'
 import profile from '../../image/reshu.png'
 import cover from '../../image/nature.jpg'
-import './ProfileCard.css'
+import './ProfileCard.scss'
 
 function ProfileCard() {
     const profilePage = true
     return (
+        <div className="con">
         <div className="profileCard">
             <div className="profileImages">
                 <img src={cover} alt="" style={{ width: '100%', height: '180px' }} />
@@ -48,6 +49,7 @@ function ProfileCard() {
             {
                 profilePage ? '' : <span>My Profile</span>
             }
+        </div>
         </div>
     )
 }

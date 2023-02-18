@@ -1,9 +1,10 @@
 import React from 'react'
-import './Followers.css'
+import './Followers.scss'
 import {FollowersData} from '../../Data/FollowersData'
 
 function Followers() {
   return (
+    <div className="con">
     <div className='followersCard' >
         <h3>who is follwong you</h3>
         {
@@ -25,6 +26,7 @@ function Followers() {
             )
           })
         }
+    </div>
     </div>
   )
 }

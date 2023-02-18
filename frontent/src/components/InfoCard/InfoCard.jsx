@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import './InfoCard.css'
+import './InfoCard.scss'
 import { UilPen } from '@iconscout/react-unicons'
 import ProfileModel from '../ProfileModel/ProfileModel'
 
 function InfoCard() {
     const [modalOpened, setModalOpened] = useState(false)
     return (
+        <div className="con">
         <div className="InfoCard">
             <div className="infoHead">
                 <h4>Your Info</h4>
@@ -35,6 +36,7 @@ function InfoCard() {
                 <span>Kinfra Park</span>
             </div>
             <button className='button  ' >Logout</button>
+        </div>
         </div>
     )
 }

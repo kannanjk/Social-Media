@@ -7,8 +7,7 @@ export const registerUser = async (req, res) => {
 
     const salt = await bcrypt.genSalt(10)
     const hashedpass = await bcrypt.hash(req.body.password, salt)
-    req.body.password =
-        req.body.password = hashedpass
+    req.body.password = hashedpass
     const newUser = new UserModel(req.body)
     const { username } = req.body
     try {
@@ -43,7 +42,7 @@ export const loginUser = async (req, res) => {
                 const token = jwt.sign({
                     username: user.username, id: user._id
                 }, process.env.JWT_KEY, { expiresIn: '1h' })
-                res.status(200).json({user,token})
+                res.status(200).json({ user, token })
             }
         } else {
             res.status(404).json("user dose not exist")

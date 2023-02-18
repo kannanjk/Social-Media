@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './RightSide.css'
+import './RightSide.scss'
 import { UilSetting } from '@iconscout/react-unicons'
 import home from '../../image/home.png'
 import note from '../../image/note.png'
@@ -11,6 +11,7 @@ import ShereModel from '../ShereModel/ShereModel'
 function RightSide() {
   const [modelopened, setModelopened] = useState(false)
   return (
+    <div className="con">
     <div className="rightSide">
       <div className="navIcon">
         <img src={home} alt="" />
@@ -25,6 +26,7 @@ function RightSide() {
       </button>
       <ShereModel modalOpened={modelopened}
         setModalOpened={setModelopened} />
+    </div>
     </div>
   )
 }

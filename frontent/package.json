@@ -47,6 +47,6 @@
   },
   "devDependencies": {
     "node-sass": "^7.0.3",
-    "sass": "^1.58.1"
+    "sass": "^1.58.3"
   }
 }
