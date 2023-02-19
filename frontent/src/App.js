@@ -1,7 +1,7 @@
 import './App.css';
 import Home from './pages/home/Home';
 import Auth from './pages/Auth/Auth';
-import {  Route, Navigate, Routes } from 'react-router-dom'
+import { Route, Navigate, Routes } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 function App() {
@@ -14,13 +14,13 @@ function App() {
       <Routes>
         <Route path='/'
           element={user
-            ? <Navigate to='/home'/>
-            : <Navigate to={<Auth/>} />}
+            ? <Navigate to='/home' />
+            : <Navigate to={<Auth />} />}
         />
 
         <Route path='/home' element={user
-            ? <Home />
-            : <Navigate to="../auth" />}
+          ? <Home />
+          : <Navigate to="../auth" />}
         />
 
         <Route path='/auth'
@@ -30,7 +30,7 @@ function App() {
         />
 
       </Routes>
-      
+
     </div>
   );
 

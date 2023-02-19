@@ -8,7 +8,6 @@ function Posts() {
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.authReducer.authData)
   const { posts, loading } = useSelector((state) => state.postReducer)
-
   useEffect(() => {
     dispatch(getTimeLinePosts(user._id))
   }, [])

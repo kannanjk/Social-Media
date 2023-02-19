@@ -10,7 +10,7 @@ function Post({ data }) {
   const { user } = useSelector((state) => state.authReducer.authData)
   return (
     <div className="post">
-      <img src={data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image: null} alt="" />
+      <img src={data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : null} alt="" />
       <div className="postREact">
         <img src={data.liked ? like : unlike} alt="" className='icon' />
         <img src={comment} alt="" className='icon' />
