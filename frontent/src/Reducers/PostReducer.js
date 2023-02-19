@@ -4,7 +4,7 @@ const postReducer = (
     state = { posts: [], loading: false, error: false, uploading: false },
     action
 ) => {
-    switch (action) {
+    switch (action.type) {
         case "UPLOAD_START":
             return { ...state, uploading: true, error: false }
         case "UPLOAD_SUCCESS":

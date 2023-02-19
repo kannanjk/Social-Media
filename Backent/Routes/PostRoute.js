@@ -9,4 +9,4 @@ router.delete('/:id', deletePost)
 router.put('/:id/like', likePost)
 router.get('/:id/timeline', getTimeLinePost)
 
-export default router                                 
+export default router                                  

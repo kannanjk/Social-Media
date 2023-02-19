@@ -1,6 +1,5 @@
 import PostModel from "../Models/PostModel.js";
 import mongoose from "mongoose";
-import UserMode from '../Models/UserModel.js'
 import UserModel from "../Models/UserModel.js";
 
 // Create New Post 

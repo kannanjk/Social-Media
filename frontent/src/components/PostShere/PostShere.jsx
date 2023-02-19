@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { uploadImage, uploadPost } from '../../Actions/UploadAction'
 
 function PostShere() {
+    const loading = useSelector((state)=>state.postReducer.uploading)
     const [image, setImage] = useState(null)
     const imageRef = useRef()
     const dispatch = useDispatch()
@@ -20,6 +21,11 @@ function PostShere() {
             let img = event.target.files[0]
             setImage(img)
         }
+    }
+
+    const reset = ()=>{
+        setImage(null)
+        desc.current.value=""
     }
 
     const handleSubmit = (e) => {
@@ -43,6 +49,7 @@ function PostShere() {
             }
         }
         dispatch(uploadPost(newPost))
+        reset()
     }
     return (
         <div className="postShere">
@@ -81,7 +88,8 @@ function PostShere() {
                     </div>
                     <button className='button ps-button'
                         onClick={handleSubmit}
-                    >  Share
+                        disabled={loading}
+                    >  {loading? "Posting...": "Share"}
                     </button>
                     <div style={{ display: 'none' }} >
                         <input type="file"
