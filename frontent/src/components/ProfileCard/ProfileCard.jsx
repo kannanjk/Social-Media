@@ -4,7 +4,7 @@ import cover from '../../image/nature.jpg'
 import './ProfileCard.scss'
 
 function ProfileCard() {
-    const profilePage = false
+    const profilePage = true
     return (
         <div className="con">
         <div className="profileCard">

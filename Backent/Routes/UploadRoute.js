@@ -1,6 +1,6 @@
 import express from 'express'
 const router = express.Router()
-import  multer  from 'multer'
+import multer from 'multer'
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -14,7 +14,7 @@ const upload = multer({
     storage: storage
 })
 
-router.post('/',upload.single("file",(req,res)=>{
+router.post('/', upload.single("file", (req, res) => {
     try {
         return res.status(200).json("File Uploaded successFully")
     } catch (error) {

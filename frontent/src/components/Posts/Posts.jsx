@@ -14,7 +14,7 @@ function Posts() {
   return (
     <div className="posts">
       {loading
-        ? "Fetching Posts...."
+        ? "Fetching Posts...." 
         : posts.map((post, id) => {
           return <Post data={post} id={id} />
         })

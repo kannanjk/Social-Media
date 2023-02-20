@@ -54,7 +54,6 @@ function PostShere() {
     return (
         <div className="postShere">
             <img src={proPic} alt="" />
-
             <div>
                 <input
                     ref={desc}
