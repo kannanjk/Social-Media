@@ -9,7 +9,6 @@ function PostSide() {
     <div className="PostSide">
       <Stories/>
         <PostShere/>
-        
         <Posts/>
     </div>
   )

@@ -5,7 +5,7 @@ import {UilSearch} from '@iconscout/react-unicons'
 
 function LogoSearch() {
   return (
-    <div className="con">
+    // <div className="con">
     <div className='LogoSearch' >
        <img src={logo} alt="" style={{width:'32px'}} />
        <div className="search">
@@ -16,7 +16,7 @@ function LogoSearch() {
         </div>
        </div>
     </div>
-    </div>
+    // </div>
   )
 }
 

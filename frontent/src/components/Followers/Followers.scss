@@ -1,9 +1,9 @@
 @import '../../Style.scss';
 
-.con {
-    @include mobile{
-        display: none;
-    }
+// .con {
+    // @include mobile{
+    //     display: none;
+    // }
     .followersCard {
         width: 100%;
         border-radius: 0.7rem;
@@ -11,6 +11,7 @@
         display: flex;
         flex-direction: column;
         font-size: 13px;
+        max-height: 10rem;
     }
 
 
@@ -57,4 +58,4 @@
         border: 2px solid var(--orange);
     }
 
-}
+// }

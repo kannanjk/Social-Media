@@ -6,9 +6,9 @@ import Followers from '../../components/Followers/Followers'
 function ProfileLeft() {
   return (
     <div className="ProfileLeft">
-        <LogoSearch/>
-        <InfoCard/>
-        <Followers/>
+      <LogoSearch />
+      <InfoCard />
+      <Followers />
     </div>
   )
 }

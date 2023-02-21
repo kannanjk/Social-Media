@@ -8,13 +8,12 @@ function Auth() {
   const dispatch = useDispatch()
   const loading = useSelector((state) => state.authReducer.loading)
   const [isSignup, setIsSignup] = useState(true)
-  console.log(loading)
   const [data, setdata] = useState({
     firstname: "",
     lastname: "",
     username: "",
     password: "",
-    confirmpass: ""
+    confirmpass: "" 
   })
 
   const [confirmPass, setConfirmPss] = useState(true)

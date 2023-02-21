@@ -23,7 +23,7 @@ export const registerUser = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: error.message })
     }
-}
+} 
 
 // login user
 export const loginUser = async (req, res) => {

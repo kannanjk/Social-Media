@@ -3,6 +3,7 @@ import Home from './pages/home/Home';
 import Auth from './pages/Auth/Auth';
 import { Route, Navigate, Routes } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import Profile from './pages/Profile/Profile';
 
 function App() {
   const user = useSelector((state) => state.authReducer.authData)
@@ -29,8 +30,13 @@ function App() {
             : <Auth />}
         />
 
-      </Routes>
+        <Route path='/profile/:id' 
+        element={user 
+        ? <Profile /> 
+        : <Navigate to='../auth' />} 
+        />
 
+      </Routes>
     </div>
   );
 

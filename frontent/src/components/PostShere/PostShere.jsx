@@ -10,6 +10,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { uploadImage, uploadPost } from '../../Actions/UploadAction'
 
 function PostShere() {
+    const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
+    
     const loading = useSelector((state) => state.postReducer.uploading)
     const [image, setImage] = useState(null)
     const imageRef = useRef()
@@ -53,7 +55,7 @@ function PostShere() {
     }
     return (
         <div className="postShere">
-            <img src={proPic} alt="" />
+            <img src={user.profilePicture ? serverPublic + user.coverpicture : serverPublic + "profile.png"} alt="" />
             <div>
                 <input
                     ref={desc}

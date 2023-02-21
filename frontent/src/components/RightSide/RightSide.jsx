@@ -7,14 +7,17 @@ import comment from '../../image/comment.png'
 import TrendCard from '../TrendCard/TrendCard'
 import ProfileModel from '../ProfileModel/ProfileModel'
 import ShereModel from '../ShereModel/ShereModel'
+import { Link } from 'react-router-dom'
 
 function RightSide() {
   const [modelopened, setModelopened] = useState(false)
   return (
-    <div className="con">
+    // <div className="con">
     <div className="rightSide">
       <div className="navIcon">
+        <Link to='../home' >
         <img src={home} alt="" />
+        </Link>
         <UilSetting />
         <img src={note} alt="" />
         <img src={comment} alt="" />
@@ -27,8 +30,8 @@ function RightSide() {
       <ShereModel modalOpened={modelopened}
         setModalOpened={setModelopened} />
     </div>
-    </div>
-  )
+    // </div>
+  ) 
 }
 
 export default RightSide

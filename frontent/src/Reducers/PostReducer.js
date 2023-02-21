@@ -1,6 +1,6 @@
 
-
-const postReducer = (
+ 
+const postReducer = ( 
     state = { posts: [], loading: false, error: false, uploading: false },
     action
 ) => {
@@ -8,7 +8,7 @@ const postReducer = (
         case "UPLOAD_START":
             return { ...state, uploading: true, error: false }
         case "UPLOAD_SUCCESS":
-            return {
+            return { 
                 ...state, posts: [action.data, ...state.posts],
                 uploading: false, error: false
             }

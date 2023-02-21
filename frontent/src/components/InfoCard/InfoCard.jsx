@@ -6,7 +6,7 @@ import ProfileModel from '../ProfileModel/ProfileModel'
 function InfoCard() {
     const [modalOpened, setModalOpened] = useState(false)
     return (
-        <div className="con">
+        // <div className="con">
         <div className="InfoCard">
             <div className="infoHead">
                 <h4>Your Info</h4>
@@ -37,7 +37,7 @@ function InfoCard() {
             </div>
             <button className='button  ' >Logout</button>
         </div>
-        </div>
+        // </div>
     )
 }
 

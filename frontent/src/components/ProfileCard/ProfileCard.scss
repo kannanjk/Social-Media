@@ -1,11 +1,12 @@
 @import '../../Style.scss';
 
 
-.con{
-    @include mobile{
-        display: none;
-    }
+// .con{
+//     @include mobile{
+//         display: none;
+//     }
 .profileCard {
+    width: 100%;
     border-radius: 1.5rem;
     display: flex;
     flex-direction: column;
@@ -88,4 +89,4 @@
     margin-bottom: 1rem;
     cursor: pointer;
 }
-}
+// }

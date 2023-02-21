@@ -1,7 +1,7 @@
 @import '../../Style.scss';
 
-.con {
-    width: 100%;
+// .con {
+//     width: 100%;
     .rightSide {
         display: flex;
         flex-direction: column;
@@ -19,9 +19,15 @@
         height: 1.5rem;
     }
 
+    .navIcon>a>img {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+
     .r-button {
         width: 80%;
         height: 3rem;
         align-self: center;
     }
-}
+// }

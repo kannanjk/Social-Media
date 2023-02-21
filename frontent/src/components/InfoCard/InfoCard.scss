@@ -1,6 +1,6 @@
 @import '../../Style.scss';
 
-.con{
+// .con{
    
 .InfoCard{
     display: flex;
@@ -17,9 +17,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    @include mobile{
-        display: none;
-    }
+    // @include mobile{
+    //     display: none;
+    // }
 }
 .infoHead>div:hover{
     cursor: pointer;
@@ -31,4 +31,4 @@
     align-self: flex-end;
 
 }
-}
+// }
