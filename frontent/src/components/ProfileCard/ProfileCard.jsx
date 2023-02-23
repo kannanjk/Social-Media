@@ -15,7 +15,7 @@ function ProfileCard({ location }) {
         // <div className="con">
         <div className="profileCard">
             <div className="profileImages">
-              <img src={user.coverpicture 
+              <img src={user.coverpicture  
                     ? serverPublic + user.coverpicture 
                     : serverPublic + "defaultCover.png"} alt="" style={{ width: '100%', height: '180px' }} />
                 <img src={user.profilePicture 
