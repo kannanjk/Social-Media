@@ -55,7 +55,7 @@ function PostShere() {
     }
     return (
         <div className="postShere">
-            <img src={user.profilePicture ? serverPublic + user.coverpicture : serverPublic + "profile.png"} alt="" />
+            <img src={user.profilePicture ? serverPublic + user.profilePicture : serverPublic + "profile.png"} alt="" />
             <div>
                 <input
                     ref={desc}

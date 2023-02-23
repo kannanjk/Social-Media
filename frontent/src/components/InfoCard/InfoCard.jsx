@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import * as UserApi from '../../Api/UserRequest.js'
 import { logOut } from '../../Actions/AuthAction'
-
+ 
 function InfoCard() {
     const [modalOpened, setModalOpened] = useState(false)
 
@@ -16,6 +16,10 @@ function InfoCard() {
     const profileUserId = params.id
     const [profileUser, setProfileUser] = useState({})
     const { user } = useSelector((state) => state.authReducer.authData)
+
+    const handleLogout = () => {
+        dispatch(logOut())
+    }
 
     useEffect(() => {
         const fetchProfileUser = async () => {
@@ -29,22 +33,25 @@ function InfoCard() {
         fetchProfileUser()
     }, [user])
 
-    const handleLogout = () =>{
-        dispatch(logOut())
-    }
+  
     return (
         // <div className="con">
-        <div className="InfoCard">
+         <div className="InfoCard">
             <div className="infoHead">
                 <h4>Profile Info</h4>
                 {user._id === profileUserId ? (
                     <div>
-                        <UilPen width='2rem' height='2rem'
+                        <UilPen
+                            width='2rem'
+                            height='2rem'
                             onClick={() => setModalOpened(true)} />
-                        <ProfileModel modalOpened={modalOpened}
-                            setModalOpened={setModalOpened} />
+                        <ProfileModel
+                            modalOpened={modalOpened}
+                            setModalOpened={setModalOpened}
+                            data={user}
+                        />
                     </div>
-                ):(null)}
+                ) : (null)}
 
             </div>
             <div className="info">
@@ -63,7 +70,7 @@ function InfoCard() {
                 <span>
                     <b>Works at </b>
                 </span>
-            <span> {profileUser.workAt} </span>
+                <span> {profileUser.workAt} </span>
             </div>
             <button className='button  ' onClick={handleLogout} >Logout</button>
         </div>

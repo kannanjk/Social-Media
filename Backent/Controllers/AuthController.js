@@ -8,6 +8,9 @@ export const registerUser = async (req, res) => {
     const salt = await bcrypt.genSalt(10)
     const hashedpass = await bcrypt.hash(req.body.password, salt)
     req.body.password = hashedpass
+    const hashedpassw = await bcrypt.hash(req.body.confirmpass, salt)
+    req.body.confirmpass = hashedpassw
+
     const newUser = new UserModel(req.body)
     const { username } = req.body
     try {

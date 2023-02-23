@@ -8,15 +8,19 @@ function ProfileCard({ location }) {
     const { user } = useSelector((state) => state.authReducer.authData)
     const posts = useSelector((state)=>state.postReducer.posts)
     const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
-
+   console.log("kannan")
+    console.log(user)
+   
     return (
         // <div className="con">
         <div className="profileCard">
             <div className="profileImages">
-                <img src={user.coverpicture
-                    ? serverPublic + user.coverpicture
+              <img src={user.coverpicture 
+                    ? serverPublic + user.coverpicture 
                     : serverPublic + "defaultCover.png"} alt="" style={{ width: '100%', height: '180px' }} />
-                <img src={user.profilePicture ? serverPublic + user.coverpicture : serverPublic + "profile.png"} alt="" />
+                <img src={user.profilePicture 
+                    ? serverPublic + user.profilePicture 
+                    : serverPublic + "profile.png"} alt="" />
             </div>
             <div className="profileName">
                 <span>{user.firstname} {user.lastname} </span>

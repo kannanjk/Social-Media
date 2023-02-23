@@ -31,6 +31,7 @@ const UserSchema = mongoose.Schema({
     livesin:String,
     workAt:String,
     relationShip:String,
+    country:String,
     followers:[],
     following:[]
 },  

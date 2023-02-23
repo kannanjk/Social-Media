@@ -1,28 +1,17 @@
 import React from 'react'
 import './Followers.scss'
 import {FollowersData} from '../../Data/FollowersData'
+import User from '../User/User'
 
 function Followers() {
   return (
     // <div className="con">
     <div className='followersCard' >
-        <h3>who is follwong you</h3>
+        <h3>People you may know</h3>
         {
-          FollowersData.map((follower,id)=>{
+          FollowersData.map((person,id)=>{
             return(
-              <div className="follower">
-                <div>
-                  <img src={follower.img} alt="" 
-                  className='followerImg' />
-                  <div className="name">
-                    <span>{follower.name}</span>
-                    <span>@{follower.username}</span>
-                  </div>
-                </div>
-                <button className='button fc-button' >
-                  follow
-                </button>
-              </div>
+            <User person={person} key={id} />
             )
           })
         }

@@ -14,12 +14,12 @@ const upload = multer({
     storage: storage
 })
 
-router.post('/', upload.single("file", (req, res) => {
+router.post("/", upload.single("file"), (req, res) => {
     try {
-        return res.status(200).json("File Uploaded successFully")
+      return res.status(200).json("File uploded successfully");
     } catch (error) {
-        console.log(error);
+      console.error(error);
     }
-}))
+  });
 
 export default router
