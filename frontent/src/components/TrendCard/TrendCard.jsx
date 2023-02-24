@@ -4,6 +4,7 @@ import './TrendCard.css'
 import { TrendData } from '../../Data/TrendData'
 function TrendCard() {
   return (
+    <div className="con">
     <div className="TrendCard">
         <h3>Trends for you</h3>
         {
@@ -16,6 +17,7 @@ function TrendCard() {
                 )
             })
         }
+    </div>
     </div>
   )
 }

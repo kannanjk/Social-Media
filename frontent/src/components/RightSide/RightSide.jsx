@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom'
 function RightSide() {
   const [modelopened, setModelopened] = useState(false)
   return (
-    // <div className="con">
+     <div className="con">
     <div className="rightSide">
       <div className="navIcon">
         <Link to='../home' >
@@ -30,7 +30,7 @@ function RightSide() {
       <ShereModel modalOpened={modelopened}
         setModalOpened={setModelopened} />
     </div>
-    // </div>
+     </div>
   ) 
 }
 

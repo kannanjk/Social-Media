@@ -1,28 +1,36 @@
 import React, { useState } from 'react'
 import './Post.css'
+// import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import like from '../../image/like.png'
 import unlike from '../../image/unlike.png'
 import shere from '../../image/shere.png'
 import comment from '../../image/comment.png'
 import { useSelector } from 'react-redux'
-import { likePost } from '../../Api/PostRequest'
+import { deletePost, likePost } from '../../Api/PostRequest'
 
 function Post({ data }) {
   const { user } = useSelector((state) => state.authReducer.authData);
-  
+
   const [liked, setLiked] = useState(data.likes.includes(user._id));
   const [likes, setLikes] = useState(data.likes.length)
 
   const handleLikes = () => {
     likePost(data._id, user._id);
     setLiked((prev) => !prev);
-    liked? setLikes((prev)=>prev-1): setLikes((prev)=>prev+1)
+    liked ? setLikes((prev) => prev - 1) : setLikes((prev) => prev + 1)
   };
+
+  const postDelete = (e) => {
+    deletePost(data._id, user._id);
+    // console.log(data._id, user._id)
+  }
+
   return (
     <div className="post">
+      <button className='button' onClick={postDelete} >delete</button>
       <img src={data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : null} alt="" />
       <div className="postREact">
-        <img src={liked ? like : unlike} onClick={handleLikes} alt="" className='icon'  style={{ cursor: "pointer" }} />
+        <img src={liked ? like : unlike} onClick={handleLikes} alt="" className='icon' style={{ cursor: "pointer" }} />
         <img src={comment} alt="" className='icon' style={{ cursor: "pointer" }} />
         <img src={shere} alt="" className='icon' style={{ cursor: "pointer" }} />
       </div>

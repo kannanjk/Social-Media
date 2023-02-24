@@ -18,7 +18,7 @@ function Followers() {
     fetchPersons()
   }, [])
   return (
-    // <div className="con">
+       <div className="con">
     <div className='followersCard' >
       <h3>People you may know</h3>
       {
@@ -29,7 +29,7 @@ function Followers() {
         })
       }
     </div>
-    // </div>
+       </div>
   )
 }
 

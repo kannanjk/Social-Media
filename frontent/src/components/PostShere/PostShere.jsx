@@ -52,7 +52,7 @@ function PostShere() {
         }
         dispatch(uploadPost(newPost))
         reset()
-    }
+    } 
     return (
         <div className="postShere">
             <img src={user.profilePicture ? serverPublic + user.profilePicture : serverPublic + "profile.png"} alt="" />

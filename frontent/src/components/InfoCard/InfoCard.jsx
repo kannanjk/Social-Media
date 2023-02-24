@@ -11,7 +11,7 @@ function InfoCard() {
     const [modalOpened, setModalOpened] = useState(false)
 
     const dispatch = useDispatch()
-    const params = useParams()
+    const params = useParams() 
 
     const profileUserId = params.id
     const [profileUser, setProfileUser] = useState({})
@@ -35,7 +35,7 @@ function InfoCard() {
 
   
     return (
-        // <div className="con">
+         <div className="con">
          <div className="InfoCard">
             <div className="infoHead">
                 <h4>Profile Info</h4>
@@ -74,7 +74,7 @@ function InfoCard() {
             </div>
             <button className='button  ' onClick={handleLogout} >Logout</button>
         </div>
-        // </div>
+         </div>
     )
 }
 

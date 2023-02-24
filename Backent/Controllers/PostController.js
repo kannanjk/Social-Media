@@ -46,7 +46,7 @@ export const updatePost = async (req, res) => {
 export const deletePost = async (req, res) => {
     const id = req.params.id
     const { userId } = req.body
-
+    console.log(userId);
     try {
         const post = await PostModel.findById(id)
         if (post.userId === userId) {
@@ -58,12 +58,13 @@ export const deletePost = async (req, res) => {
     } catch (error) {
         res.status(500).json(error)
     }
-}
+} 
 
 // like/dislike a post
 export const likePost = async (req, res) => {
     const id = req.params.id
     const { userId } = req.body
+    console.log(userId);
   
     try {
         const post = await PostModel.findById(id)

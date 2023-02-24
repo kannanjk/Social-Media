@@ -1,6 +1,9 @@
+@import '../../Style.scss';
 
-
-// .con{
+ .con{
+    @include mobile{
+        display: none;
+    }
 .LogoSearch {
     width: 100%;
     display: flex;
@@ -29,4 +32,4 @@
 .s-icon:hover{
     cursor: pointer;
 }
-// }
+ }
