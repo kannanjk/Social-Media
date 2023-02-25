@@ -39,7 +39,7 @@ function InfoCard() {
          <div className="InfoCard">
             <div className="infoHead">
                 <h4>Profile Info</h4>
-                {user._id === profileUserId ? (
+                {user._id === profileUserId ? ( 
                     <div>
                         <UilPen
                             width='2rem'

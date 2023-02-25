@@ -33,8 +33,8 @@ mongoose
         console.log(e);
     })
 
-// useage of routes
+// useage of routes 
 app.use('/auth', AuthRoute)
 app.use('/user', UserRoute)
 app.use('/post', PostRoute) 
-app.use('/upload',uploadRouter) 
+app.use('/upload',uploadRouter)  

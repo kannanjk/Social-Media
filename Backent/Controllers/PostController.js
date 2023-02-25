@@ -43,9 +43,31 @@ export const updatePost = async (req, res) => {
 }
 
 // Delete a post 
-export const deletePost = async (req, res) => {
+export const likePost = async (req, res) => {
+
     const id = req.params.id
     const { userId } = req.body
+    console.log(userId);
+    try {
+        const post = await PostModel.findById(id)
+        if (!post.likes.includes(userId)) {
+            await post.updateOne({ $push: { likes: userId } })
+            res.status(200).json("post liked")
+        } else {
+            await post.updateOne({ $pull: { likes: userId } })
+            res.status(200).json("post Unliked")
+        }
+    } catch (error) {
+        res.status(500).json(error)
+    }
+   
+}
+
+// like/dislike a post
+export const deletePost = async (req, res) => {
+
+    const id = req.params.id
+    const  {userId}  = req.body
     console.log(userId);
     try {
         const post = await PostModel.findById(id)
@@ -58,26 +80,8 @@ export const deletePost = async (req, res) => {
     } catch (error) {
         res.status(500).json(error)
     }
-} 
 
-// like/dislike a post
-export const likePost = async (req, res) => {
-    const id = req.params.id
-    const { userId } = req.body
-    console.log(userId);
-  
-    try {
-        const post = await PostModel.findById(id)
-        if (!post.likes.includes(userId)) {
-            await post.updateOne({ $push: { likes: userId } })
-            res.status(200).json("post liked") 
-        } else {
-            await post.updateOne({ $pull: { likes: userId } })
-            res.status(200).json("post Unliked")
-        }
-    } catch (error) {
-        res.status(500).json(error)
-    }
+
 }
 
 // get timeline post
@@ -108,12 +112,12 @@ export const getTimeLinePost = async (req, res) => {
             }
         ])
         res
-        .status(200)
-        .json(currentUserPost.concat(...followingPost[0].followingPost)
-        .sort((a,b)=>{
-            return b.createAt - a.createAt
-        })
-        )
+            .status(200)
+            .json(currentUserPost.concat(...followingPost[0].followingPost)
+                .sort((a, b) => {
+                    return b.createAt - a.createAt
+                })
+            )
     } catch (error) {
         res.status(500).json(error)
     }

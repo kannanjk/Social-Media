@@ -10,7 +10,7 @@ function ProfileCard({ location }) {
     const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
    console.log("kannan")
     console.log(user)
-   
+    
     return (
          <div className="con">
         <div className="profileCard">
