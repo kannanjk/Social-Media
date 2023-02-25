@@ -28,6 +28,7 @@ function Dropdown({ modalOpened, setModalOpened, data }) {
             swal('Your imaginary file is safe!');
           }
         })
+        setModalOpened(false)
       }
 
     return (
@@ -45,19 +46,20 @@ function Dropdown({ modalOpened, setModalOpened, data }) {
                 onClose={() => setModalOpened(false)}
                 title='choose one option'
             >
+                <div className='drop'>
                 <div>
-                    <button onClick={postDelete} >delete</button>
+                    <button className='delete' onClick={postDelete} >delete</button>
                 </div>
                 <div>
-                    <button>delete</button>
+                    <button>Share</button>
                 </div>
                 <div>
-                    <button>delete</button>
+                    <button>Save</button>
                 </div>
                 <div>
-                    <button>delete</button>
+                    <button>Report</button>
                 </div>
-
+                </div>
 
             </Modal>
         </>
