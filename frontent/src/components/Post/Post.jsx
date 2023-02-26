@@ -55,16 +55,17 @@ function Post({ data }) {
       data={data}
       />
       </div>
+      <span style={{marginLeft:"5%"}}> {data.desc} </span>
       <img src={data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : null} alt="" />
       <div className="postREact">
         <img src={liked ? like : unlike} onClick={handleLikes} alt="" className='icon' style={{ cursor: "pointer" }} />
         <img onClick={() => setCommentOpen(!commentOpen)} src={comment} alt="" className='icon' style={{ cursor: "pointer" }} />
+        
         <img src={shere} alt="" className='icon' style={{ cursor: "pointer" }} />
       </div>
       <span style={{ color: 'var(--gray)', fontSize: '13px' }}  >{likes} likes</span>
       <div className="detail">
         <span><b>{data.name}</b></span>
-        <span> {data.desc} </span>
         {commentOpen && <Comments/>}
       </div>
     </div>

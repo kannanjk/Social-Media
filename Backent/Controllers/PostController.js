@@ -1,6 +1,7 @@
 import PostModel from "../Models/PostModel.js";
 import mongoose from "mongoose";
 import UserModel from "../Models/UserModel.js";
+import comments from '../Models/Comments.js'
 
 // Create New Post 
 export const createPost = async (req, res) => {
@@ -42,7 +43,7 @@ export const updatePost = async (req, res) => {
     }
 }
 
-// Delete a post 
+// like/dislike a post
 export const likePost = async (req, res) => {
 
     const id = req.params.id
@@ -63,7 +64,25 @@ export const likePost = async (req, res) => {
 
 }
 
-// like/dislike a post
+// comment Post
+export const commentPost = async (req, res) => {
+    try {
+        const { postId, content, tag, reply } = req.body
+        const newComment = new comments({
+            user: req.userId, content, tag, reply
+        })
+        await PostModel.findOneAndUpdate({ _id: postId }, {
+            $push: { comments: newComment._id } 
+        }, { new: true })
+        await newComment.save()
+        res.status(200).json("post commented")
+    } catch (error) {
+        res.status(500).json(error)
+        console.log(error);
+    }
+}
+
+// Delete a post 
 export const deletePost = async (req, res) => {
 
     const id = req.params.id
