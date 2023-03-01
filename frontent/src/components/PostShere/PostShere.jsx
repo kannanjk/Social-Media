@@ -10,29 +10,25 @@ import { useDispatch, useSelector } from 'react-redux'
 import { uploadImage, uploadPost } from '../../Actions/UploadAction'
 
 function PostShere() {
+    const dispatch = useDispatch()
     const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
+    const { user } = useSelector((state) => state.authReducer.authData)
     
     const loading = useSelector((state) => state.postReducer.uploading)
     const [image, setImage] = useState(null)
     const imageRef = useRef()
-    const dispatch = useDispatch()
-    const desc = useRef()
-    const { user } = useSelector((state) => state.authReducer.authData)
     const onImageChange = (event) => {
         if (event.target.files && event.target.files[0]) {
             let img = event.target.files[0]
             setImage(img)
         }
     }
+    const desc = useRef()
 
-    const reset = () => {
-        setImage(null)
-        desc.current.value = ""
-    }
-
-    const handleSubmit = (e) => {
+    
+    const handleSubmit = async (e) => {
         e.preventDefault()
-
+        
         const newPost = {
             userId: user._id,
             desc: desc.current.value
@@ -53,6 +49,10 @@ function PostShere() {
         dispatch(uploadPost(newPost))
         reset()
     } 
+    const reset = () => {
+        setImage(null)
+        desc.current.value = ""
+    }
     return (
         <div className="postShere">
             <img src={user.profilePicture ? serverPublic + user.profilePicture : serverPublic + "profile.png"} alt="" />

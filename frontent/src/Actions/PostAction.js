@@ -5,8 +5,10 @@ export const getTimeLinePosts = (id) => async (dispatch) => {
   try {
     const { data } = await PostsApi.getTimeLinePosts(id);
     dispatch({ type: "RETREIVING_SUCCESS", data: data });
+    console.log(data);
   } catch (error) {
     console.log(error);
     dispatch({ type: "RETREIVING_FAIL" });
   }
 };
+

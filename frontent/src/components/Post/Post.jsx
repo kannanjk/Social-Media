@@ -10,10 +10,15 @@ import { likePost } from '../../Api/PostRequest'
 import Dropdown from '../Dropdown/Dropdown';
 import Comments from '../Comments/Comments';
 
+
+
 function Post({ data }) {
-  const { user } = useSelector((state) => state.authReducer.authData);
+  // console.log(data)
+  const { user } = useSelector((state) => state.authReducer.authData)
+
   const [modalOpened, setModalOpened] = useState(false)
   const [commentOpen, setCommentOpen] = useState(false)
+
 
   const [liked, setLiked] = useState(data.likes.includes(user._id));
   const [likes, setLikes] = useState(data.likes.length)
@@ -43,33 +48,43 @@ function Post({ data }) {
   //   })
   // }
 
-  return ( 
+  return (
     <div className="post">
       <div className='kannan'>
-      <MoreHorizIcon
-      onClick={() => setModalOpened(true)} 
-      />
-      <Dropdown
-      modalOpened={modalOpened}
-      setModalOpened={setModalOpened}
-      data={data}
-      />
+        <MoreHorizIcon
+          onClick={() => setModalOpened(true)}
+        />
+        <Dropdown
+          modalOpened={modalOpened}
+          setModalOpened={setModalOpened}
+          data={data}
+        />
       </div>
-      <span style={{marginLeft:"5%"}}> {data.desc} </span>
+      <div className="details">
+        <img src={data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : null} alt="" />
+        <span className='name' > kannan </span>
+        <span className='name' >1 min ago</span>
+      </div>
+      <span style={{ marginLeft: "5%" }}> {data.desc} </span>
       <img src={data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : null} alt="" />
       <div className="postREact">
         <img src={liked ? like : unlike} onClick={handleLikes} alt="" className='icon' style={{ cursor: "pointer" }} />
         <img onClick={() => setCommentOpen(!commentOpen)} src={comment} alt="" className='icon' style={{ cursor: "pointer" }} />
-        
+
         <img src={shere} alt="" className='icon' style={{ cursor: "pointer" }} />
       </div>
       <span style={{ color: 'var(--gray)', fontSize: '13px' }}  >{likes} likes</span>
       <div className="detail">
         <span><b>{data.name}</b></span>
-        {commentOpen && <Comments/>}
+        {commentOpen && <Comments data={data} key={user._id} />}
       </div>
     </div>
   )
 }
 
 export default Post
+
+
+
+
+ 

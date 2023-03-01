@@ -23,3 +23,11 @@
 .kannan{
     margin-left: 85%;
 }
+.details>img{
+    width: 10%;
+    height:60% ;
+    border-radius: 50%;
+}
+.name{
+    margin-left: 2%;
+}

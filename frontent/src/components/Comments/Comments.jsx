@@ -1,18 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { createComment } from '../../Api/PostRequest';
 import './Comments.scss'
 
-function Comments() {
+function Comments({ data }) {
+  let { posts } = useSelector((state) => state.postReducer)
+  const { user } = useSelector((state) => state.authReducer.authData);
+
+  const [comment, setcomment] = useState(data.comments.length)
+
+  const [content, setContent] = useState('')
+  // const dispatch = useDispatch()
+
+  const handlesubmit = (e) => {
+    e.preventDefault()
+    if (!content.trim()) return
+    setContent('')
+
+
+    createComment(data._id, content);
+  }
+
   const comments = [
     {
       id: 1,
-      desc: " generate placeholder text to insert it in whatever software/webapp you want. See below for details.",
       name: "manu",
       userId: "1",
       proPic: "http://3.bp.blogspot.com/-nZ3evGgpgh0/TyfamKNtrRI/AAAAAAAACQM/_e2PX6BU04k/s1600/Tamanna+hot+in+black+chudithar+at+Badrinath+function+8.jpg"
     },
     {
       id: 1,
-      desc: " generate placeholder text to insert it in whatever software/webapp you want. See below for details.",
       name: "manu",
       userId: "1",
       proPic: "https://tse1.mm.bing.net/th?id=OIP.IEaJCgCUqmEYVRNc_6p-UQHaLI&pid=Api&P=0"
@@ -21,22 +38,27 @@ function Comments() {
   return (
     <div className="comments">
       <div className="write">
-        <img src='http://2.bp.blogspot.com/-k_yEBWhHtg0/UqXwmN-CQLI/AAAAAAAAsa8/Wbi_OVNp6U8/s1600/Tamanna++in+Dark+Pink+Saree_ActressQ_009.jpg' alt="" />
-      <input type="text" placeholder='Write a comment' />
-      <button>Sent</button>
+        <img src='https://www.clipartkey.com/mpngs/m/152-1520367_user-profile-default-image-png-clipart-png-download.png' alt="" />
+        <input
+          type="text"
+          placeholder='Write a comment'
+          value={content}
+          onChange={e => setContent(e.target.value)}
+        />
+        <button type='submit' onClick={handlesubmit} >Sent</button>
       </div>
-      {
-        comments.map(comment => (
-          <div className="comment">
-            <img src={comment.proPic} alt="" />
-            <div className="info">
-              <span> {comment.name} </span>
-              <p> {comment.desc} </p>
-              <span className='date' >1 hour ago</span>
-            </div>
+      {/* {data.map(comment => ( */}
+        <div className="comment">
+          {/* <img src={comment.proPic} alt="" /> */}
+          <div className="info">
+            {/* <span> {comment.comments.length}</span> */}
+            {/* <span>{comment.comments}</span> */}
+
+            <span className='date' >1 hour ago</span>
           </div>
-        ))
-      }
+        </div>
+      {/* ))} */}
+
     </div>
   )
 }

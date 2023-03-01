@@ -13,7 +13,7 @@ function Auth() {
     lastname: "",
     username: "",
     password: "",
-    confirmpass: "" 
+    confirmpass: ""
   })
 
   const [confirmPass, setConfirmPss] = useState(true)
@@ -23,7 +23,7 @@ function Auth() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (isSignup) {
+    if (isSignup) { 
       data.password === data.confirmpass
         ? dispatch(signUp(data))
         : setConfirmPss(false)
@@ -120,85 +120,85 @@ function Auth() {
     // </div>
 
     <div class="user">
-    <header class="user__header">
-      <img src="http://pluspng.com/img-png/group-of-friends-png-hd-cooperation-friend-friendship-gang-group-team-teammate-icon-512.png" alt="" />
+      <header class="user__header">
+        <img src="http://pluspng.com/img-png/group-of-friends-png-hd-cooperation-friend-friendship-gang-group-team-teammate-icon-512.png" alt="" />
         <h1 class="user__title">Let's make a good friendship</h1>
-    </header>
+      </header>
 
-    <form class="form" onSubmit={handleSubmit} >
+      <form class="form" onSubmit={handleSubmit} >
         <h2> {isSignup ? "Sign Up" : "Log In"} </h2>
         <br />
         {isSignup && (
-            <div>
-                <div class="form__group">
-                    <input type="text"
-                        placeholder="firstname"
-                        class="form__input"
-                        name='firstname'
-                        onChange={handleChange}
-                        value={data.firstname}
-                    />
-                </div>
-
-                <div class="form__group">
-                    <input type="text"
-                        placeholder="lastname"
-                        class="form__input"
-                        name='lastname'
-                        onChange={handleChange}
-                        value={data.lastname}
-                    />
-                </div>
+          <div>
+            <div class="form__group">
+              <input type="text"
+                placeholder="firstname"
+                class="form__input"
+                name='firstname'
+                onChange={handleChange}
+                value={data.firstname}
+              />
             </div>
+
+            <div class="form__group">
+              <input type="text"
+                placeholder="lastname"
+                class="form__input"
+                name='lastname'
+                onChange={handleChange}
+                value={data.lastname}
+              />
+            </div>
+          </div>
         )}
         <div class="form__group">
-            <input type="text"
-                placeholder="username"
-                class="form__input"
-                name='username'
-                onChange={handleChange}
-                value={data.username}
-            />
+          <input type="text"
+            placeholder="username"
+            class="form__input"
+            name='username'
+            onChange={handleChange}
+            value={data.username}
+          />
         </div>
 
         <div class="form__group">
-            <input type="password"
-                placeholder="password"
-                class="form__input"
-                name='password'
-                onChange={handleChange}
-                value={data.password}
-            />
+          <input type="password"
+            placeholder="password"
+            class="form__input"
+            name='password'
+            onChange={handleChange}
+            value={data.password}
+          />
         </div>
 
         {isSignup && (
-            <div class="form__group">
-                <input type="password"
-                    placeholder="ConfimPassword"
-                    name='confirmpass'
-                    class="form__input"
-                    onChange={handleChange}
-                    value={data.confirmpass}
-                />
-                <span style={{ display: confirmPass ? "none" : "block", color: "red", fontSize: "14px", alignSelf: "flex-end", marginRight: "10px" }} >
-                    * Confirm Password is not same
-                </span>
-            </div>
+          <div class="form__group">
+            <input type="password"
+              placeholder="ConfimPassword"
+              name='confirmpass'
+              class="form__input"
+              onChange={handleChange}
+              value={data.confirmpass}
+            />
+            <span style={{ display: confirmPass ? "none" : "block", color: "red", fontSize: "14px", alignSelf: "flex-end", marginRight: "10px" }} >
+              * Confirm Password is not same
+            </span>
+          </div>
         )}
 
         <button class="btn" type="submit">
-            {isSignup ? "Sign Up" : "Log In"}
+          {isSignup ? "Sign Up" : "Log In"}
         </button>
-    </form>
-    <br />
-    <span style={{ fontSize: '17px', cursor: 'pointer' }}
+      </form>
+      <br />
+      <span style={{ fontSize: '17px', cursor: 'pointer' }}
         onClick={() => {
-            setIsSignup((prev) => !prev);
-            reseForm()
+          setIsSignup((prev) => !prev);
+          reseForm()
         }}>
         {isSignup ? "Already i have an account!" : "Create New Account ?"}
-    </span>
-</div>
+      </span>
+    </div>
   )
 }
 

@@ -89,7 +89,7 @@ export const followUser = async (req, res) => {
 
     if (_id === id) {
         res.status(403).json("Action forbidden")
-    } else {
+    } else { 
         try {
             const followUser = await UserModel.findById(id)
             const followingUser = await UserModel.findById(_id)
