@@ -20,7 +20,9 @@ function RightSide() {
         </Link>
         <UilSetting />
         <img src={note} alt="" />
+        <Link to='../chat' >
         <img src={comment} alt="" />
+        </Link>
       </div>
       <TrendCard />
       <button className="button r-button"
