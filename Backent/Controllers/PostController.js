@@ -13,7 +13,7 @@ export const createPost = async (req, res) => {
         res.status(500).json(error)
     }
 }
-
+ 
 // Get a Post
 export const getPost = async (req, res) => {
     const id = req.params.id
@@ -69,11 +69,12 @@ export const likePost = async (req, res) => {
 export const commentPost = async (req, res) => {
     try {
         const postId = req.params.id
-        const content =req.body
-    console.log({content})
+        // const content =req.body
+    // console.log({content})
         const newComment = new comments({
-            content
+            content:req.body.comment
         })
+        console.log(newComment);
         await PostModel.findOneAndUpdate({ _id: postId }, { 
             $push: { comments: newComment }
         }, { new: true })  
@@ -81,7 +82,6 @@ export const commentPost = async (req, res) => {
         res.status(200).json("post commented")
     } catch (error) {
         res.status(500).json(error)
-        console.log("kannan");
         console.log(error);
     }
 }

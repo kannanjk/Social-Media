@@ -16,7 +16,7 @@ export const likePost = (id, userId) => {
     API.put(`post/${id}/like`, { userId: userId })
     console.log(userId);
 }
-
+ 
 export const  deletePost = (id, userId) => {
     API.put(`post/${id}/dlte`, { userId: userId })
 }

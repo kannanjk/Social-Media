@@ -19,7 +19,9 @@ function Post({ data }) {
   const [modalOpened, setModalOpened] = useState(false)
   const [commentOpen, setCommentOpen] = useState(false)
 
+  const [commentd, setcomment] = useState(data.comments.length)
 
+  
   const [liked, setLiked] = useState(data.likes.includes(user._id));
   const [likes, setLikes] = useState(data.likes.length)
 
@@ -28,6 +30,7 @@ function Post({ data }) {
     setLiked((prev) => !prev);
     liked ? setLikes((prev) => prev - 1) : setLikes((prev) => prev + 1)
   };
+
 
   // const postDelete = () => {
   //   swal({
@@ -73,7 +76,11 @@ function Post({ data }) {
 
         <img src={shere} alt="" className='icon' style={{ cursor: "pointer" }} />
       </div>
+      <div >
       <span style={{ color: 'var(--gray)', fontSize: '13px' }}  >{likes} likes</span>
+      <span  style={{ color: 'var(--gray)', marginLeft:"1%",fontSize: '13px' }}  > {commentd} comments</span>
+      <span  style={{ color: 'var(--gray)', marginLeft:"1%",fontSize: '13px' }}  > {data.comments.length} Share</span>
+      </div>
       <div className="detail">
         <span><b>{data.name}</b></span>
         {commentOpen && <Comments data={data} key={user._id} />}

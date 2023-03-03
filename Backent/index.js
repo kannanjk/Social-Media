@@ -7,13 +7,15 @@ import AuthRoute from './Routes/AuthRoute.js'
 import UserRoute from './Routes/UserRoute.js'
 import PostRoute from './Routes/PostRoute.js'
 import uploadRouter from './Routes/UploadRoute.js'
+import ChatRoute from './Routes/ChatRoute.js'
+import MessageRoute from './Routes/MessageRoute.js'
 
 // Routes
 const app = express()
 
 // to server image for public
 app.use(express.static('public'))
-app.use('/images',express.static("images"))
+app.use('/images', express.static("images"))
 
 // middleware
 app.use(bodyParser.json({ limit: "30mb", extended: true }))
@@ -31,10 +33,12 @@ mongoose
         console.log(`Listening at ${process.env.PORT}`)
     )).catch((e) => {
         console.log(e);
-    }) 
+    })
 
 // useage of routes   
 app.use('/auth', AuthRoute)
 app.use('/user', UserRoute)
-app.use('/post', PostRoute) 
-app.use('/upload',uploadRouter)  
+app.use('/post', PostRoute)
+app.use('/upload', uploadRouter)
+app.use("/chat", ChatRoute)
+app.use('/message', MessageRoute)

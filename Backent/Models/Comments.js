@@ -2,10 +2,11 @@ import mongoose from "mongoose";
 
 const commentSchema = mongoose.Schema({
     content: {
-        comment: {
-            type: String,
-            require: true
-        }
+        type:String  
+        // comment: {
+        //     type: String,
+        //     require: true
+        // } 
     },
     tag: Object,
     reply: mongoose.Types.ObjectId,
