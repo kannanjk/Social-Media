@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const MessageSchema =new mongoose.Schema(
     {
         chatId:{
-            teype:String
+            teype:String 
         },
         senderId:{ 
             type:String

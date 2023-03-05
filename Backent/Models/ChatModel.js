@@ -2,11 +2,11 @@ import mongoose from "mongoose";
 
 const ChatSchema = mongoose.Schema(
     {
-        members: {
+        members: { 
             type: Array
         }
     },
-    { 
+    {  
         timestamps:true
     }
 )

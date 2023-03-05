@@ -12,7 +12,7 @@ export const addMessage = async (req, res) => {
         res.status(200).json(result)
     } catch (error) {
         res.status(500).json(error)
-    }
+    }  
 }
 
 export const getMessages = async (req,res)  =>{
