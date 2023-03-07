@@ -28,7 +28,6 @@ export const userchat = async (req, res) => {
 }
  
 export const findChat = async (req, res) => {
-    console.log("kannnan");
     try {
         const chat = await ChatModel.findOne({
             members: { $all: [req.params.firstId, req.params.secondId] }

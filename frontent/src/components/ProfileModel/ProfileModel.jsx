@@ -3,11 +3,10 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { uploadImage } from '../../Actions/UploadAction';
-import { updateuser } from '../../Api/UserRequest';
+import { updateuser } from '../../Actions/UserAction';
 import './ProfileModel.css'
 
 function ProfileModel({ modalOpened, setModalOpened, data }) {
-
     const theme = useMantineTheme();
     const { password, ...other } = data;
     const [formData, setFormData] = useState(other);

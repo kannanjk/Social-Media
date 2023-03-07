@@ -25,7 +25,7 @@ function Chat() {
     const [receiveMessage, setReceiveMessage] = useState(null)
 
     // get chat in chat section
-    useEffect(() => {
+    useEffect(() => { 
         const getChats = async () => {
             try {
                 const { data } = await UserChats(user._id)
@@ -44,7 +44,7 @@ function Chat() {
         socket.current.on('get-users', (users) => {
             setOnlineUsers(users)
         })
-    }, [user])
+    }, [user]) 
 
     // Send message to socket server
     useEffect(() => {
@@ -71,6 +71,7 @@ function Chat() {
     }
 
     return (
+        <div className="cont">
         <div className="Chat">
             {/* Left Side */}
             <div className="Left-side-chat ">
@@ -117,6 +118,7 @@ function Chat() {
                 />
 
             </div>
+        </div>
         </div>
     )
 }

@@ -8,11 +8,10 @@ import * as UserApi from '../../Api/UserRequest.js'
 import { logOut } from '../../Actions/AuthAction'
  
 function InfoCard() {
-    const [modalOpened, setModalOpened] = useState(false)
 
     const dispatch = useDispatch()
     const params = useParams() 
-
+    const [modalOpened, setModalOpened] = useState(false)
     const profileUserId = params.id
     const [profileUser, setProfileUser] = useState({})
     const { user } = useSelector((state) => state.authReducer.authData)

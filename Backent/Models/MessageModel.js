@@ -3,19 +3,19 @@ import mongoose from "mongoose";
 const MessageSchema =new mongoose.Schema(
     {
         chatId:{
-            teype:String 
+            type:String ,
         },
         senderId:{ 
-            type:String
+            type:String,
         },
         text:{
-            type:String
-        }
+            type:String,
+        },
     },
-    {
-        timestamps:true
+    { 
+        timestamps:true,
     }
 )
 
-const MessageModel = mongoose.model("message",MessageSchema)
+const MessageModel = mongoose.model("Message",MessageSchema)
 export default MessageModel

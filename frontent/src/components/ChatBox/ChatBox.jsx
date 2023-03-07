@@ -136,7 +136,7 @@ function ChatBox({ chat, currentUser, setSendMessage, receiveMessage }) {
                     <span className="chatbox-empty-message">
                         Tap on a Chat start Conversation...
                     </span>
-                    
+
                 )}
             </div>
         </>

@@ -43,13 +43,13 @@ export const updatePost = async (req, res) => {
         res.status(500).json(error)
     }
 }
-
+  
 // like/dislike a post
 export const likePost = async (req, res) => {
 
     const id = req.params.id
     const { userId } = req.body
-    console.log(userId);
+    console.log(id);
     try {
         const post = await PostModel.findById(id)
         if (!post.likes.includes(userId)) {

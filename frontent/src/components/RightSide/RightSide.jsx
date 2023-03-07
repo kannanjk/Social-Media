@@ -5,9 +5,9 @@ import home from '../../image/home.png'
 import note from '../../image/note.png'
 import comment from '../../image/comment.png'
 import TrendCard from '../TrendCard/TrendCard'
-import ProfileModel from '../ProfileModel/ProfileModel'
 import ShereModel from '../ShereModel/ShereModel'
 import { Link } from 'react-router-dom'
+import OnlineFriend from '../OnlineFriend/OnlineFriend'
 
 function RightSide() {
   const [modelopened, setModelopened] = useState(false)
@@ -31,6 +31,10 @@ function RightSide() {
       </button>
       <ShereModel modalOpened={modelopened}
         setModalOpened={setModelopened} />
+    </div>
+    <div style={{marginTop:"16%"}}>
+    <h3  style={{marginBottom:"11%"}} >Online Friends</h3>
+    <OnlineFriend/>
     </div>
      </div>
   ) 

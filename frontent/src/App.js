@@ -41,6 +41,15 @@ function App() {
             ? <Chat />
             : <Navigate to='../auth' />} />
 
+        <Route
+          path="*"
+          element={
+            <main style={{ padding: "1rem" }}>
+              <p>There's nothing here!</p>
+            </main>
+          }
+        />
+
       </Routes>
     </div>
   );
