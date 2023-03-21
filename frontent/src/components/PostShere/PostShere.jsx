@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import proPic from '../../image/reshu.png'
 import './PostShere.scss'
 import { UilScenery } from '@iconscout/react-unicons'
@@ -13,7 +14,7 @@ function PostShere() {
     const dispatch = useDispatch()
     const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
     const { user } = useSelector((state) => state.authReducer.authData)
-    
+
     const loading = useSelector((state) => state.postReducer.uploading)
     const [image, setImage] = useState(null)
     const imageRef = useRef()
@@ -25,10 +26,10 @@ function PostShere() {
     }
     const desc = useRef()
 
-    
+
     const handleSubmit = async (e) => {
         e.preventDefault()
-        
+
         const newPost = {
             userId: user._id,
             desc: desc.current.value
@@ -48,14 +49,18 @@ function PostShere() {
         }
         dispatch(uploadPost(newPost))
         reset()
-    } 
+    }
     const reset = () => {
         setImage(null)
         desc.current.value = ""
     }
     return (
         <div className="postShere">
-            <img src={user.profilePicture ? serverPublic + user.profilePicture : serverPublic + "profile.png"} alt="" />
+            <Link to={`/profile/${user._id}`}>
+                <img src={user.profilePicture
+                    ? serverPublic + user.profilePicture
+                    : serverPublic + "profile.png"} className='img' alt="" />
+            </Link>
             <div>
                 <input
                     ref={desc}

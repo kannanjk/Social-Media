@@ -90,8 +90,3 @@ function Post({ data }) {
 }
 
 export default Post
-
-
-
-
- 

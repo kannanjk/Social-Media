@@ -1,7 +1,7 @@
 import React from 'react'
 import './Stories.scss'
 
-function Stories() {
+function Stories({location}) {
     const storie = [
         {
             id: 1,

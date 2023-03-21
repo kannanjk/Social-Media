@@ -15,7 +15,7 @@ function ChatBox({ chat, currentUser, setSendMessage, receiveMessage }) {
         setNewMessages(newMessage)
     }
 
-    // fetching data for header 
+    /* fetching data for header */
     useEffect(() => {
         const userId = chat?.members?.find((id) => id !== currentUser)
         const getUserData = async () => {
@@ -30,7 +30,7 @@ function ChatBox({ chat, currentUser, setSendMessage, receiveMessage }) {
         if (chat !== null) getUserData()
     }, [chat, currentUser])
 
-    // fetching data for messages
+    /* fetching data for messages */
     useEffect(() => {
         const fetchMessages = async () => {
             try {
@@ -75,10 +75,8 @@ function ChatBox({ chat, currentUser, setSendMessage, receiveMessage }) {
         }
     }, [receiveMessage])
 
-
     const scroll = useRef()
     const imageRef = useRef()
-
 
     return (
         <>
@@ -88,9 +86,9 @@ function ChatBox({ chat, currentUser, setSendMessage, receiveMessage }) {
                         <div className="chat-header">
                             <div className="follower">
                                 <div>
-                                    <img src={userData?.profilePicture ? process.env.
-                                        REACT_APP_PUBLIC_FOLDER + userData.profilePicture : process.env.
-                                            REACT_APP_PUBLIC_FOLDER + 'profile.png'} alt=""
+                                    <img src={userData?.profilePicture
+                                        ? process.env.REACT_APP_PUBLIC_FOLDER + userData.profilePicture
+                                        : process.env.REACT_APP_PUBLIC_FOLDER + 'profile.png'} alt=""
                                         className='followerImage'
                                         style={{ width: "50px", borderRadius: "50%", height: "50px" }}
                                     />
@@ -124,11 +122,9 @@ function ChatBox({ chat, currentUser, setSendMessage, receiveMessage }) {
                             />
                             <div className="sent-button button" onClick={handleSend} >Sent</div>
                             <input
-                                type="file"
-                                name=""
-                                id=""
+                               type="file" name=""
+                                id="" ref={imageRef}
                                 style={{ display: "none" }}
-                                ref={imageRef}
                             />
                         </div>{" "}
                     </>
@@ -136,12 +132,9 @@ function ChatBox({ chat, currentUser, setSendMessage, receiveMessage }) {
                     <span className="chatbox-empty-message">
                         Tap on a Chat start Conversation...
                     </span>
-
                 )}
             </div>
         </>
     )
 }
-
 export default ChatBox
-

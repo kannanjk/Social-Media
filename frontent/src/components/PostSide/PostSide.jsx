@@ -7,7 +7,7 @@ import Stories from '../Stories/Stories'
 function PostSide() {
   return (
     <div className="PostSide">
-      <Stories/>
+      <Stories location="profilePage" />
         <PostShere/>
         <Posts/>
     </div>

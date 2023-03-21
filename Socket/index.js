@@ -21,10 +21,10 @@ io.on("connection", (socket) => {
     socket.on("disconnect", () => {
         activeUsers = activeUsers.filter((user) => user.socketId !== socket.id)
         console.log("disconnected User", activeUsers);
-         // send all active users to all users
+        // send all active users to all users
         io.emit("get-users", activeUsers)
     })
-
+                                                   
     // Sent Message to a specific user
     socket.on("sent-message", (data) => {
         const { receiverId } = data
