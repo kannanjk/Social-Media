@@ -11,7 +11,7 @@ function Followers() {
 
   useEffect(() => {
     const fetchPersons = async () => {
-      const { data } = await getAllUser()
+      const { data } = await getAllUser()   
       setPersons(data)
     }
     fetchPersons()

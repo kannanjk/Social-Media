@@ -25,7 +25,7 @@ function Chat() {
     const [receiveMessage, setReceiveMessage] = useState(null)
 
     // get chat in chat section
-    useEffect(() => { 
+    useEffect(() => {
         const getChats = async () => {
             try {
                 const { data } = await UserChats(user._id)
@@ -44,7 +44,7 @@ function Chat() {
         socket.current.on('get-users', (users) => {
             setOnlineUsers(users)
         })
-    }, [user]) 
+    }, [user])
 
     // Send message to socket server
     useEffect(() => {
@@ -53,16 +53,12 @@ function Chat() {
         }
     }, [sendMessage])
 
-
-
     // Receive Message from socket server
     useEffect(() => {
         socket.current.on("receive-message", (data) => {
             setReceiveMessage(data)
         })
     }, [])
-
-
 
     const checkOnlineStatus = (chat) => {
         const chatMember = chat.members.find((member) => member !== user._id)
@@ -72,53 +68,53 @@ function Chat() {
 
     return (
         <div className="cont">
-        <div className="Chat">
-            {/* Left Side */}
-            <div className="Left-side-chat ">
-                <Logosearch />
-                <div className="Chat-container">
-                    <h2>Chats</h2>
-                    <div className="Chat-list">
-                        {chats.map((chat) => (
-                            <div
-                                onClick={() => {
-                                    setCurrentChat(chat)
-                                }} >
-                                <Conversation 
-                                data={chat} 
-                                currentUserId={user._id} 
-                                online={checkOnlineStatus(chat)} 
-                                />
-                            </div>
-                        ))}
+            <div className="Chat">
+                {/* Left Side */}
+                <div className="Left-side-chat ">
+                    <Logosearch />
+                    <div className="Chat-container">
+                        <h2>Chats</h2>
+                        <div className="Chat-list">
+                            {chats.map((chat) => (
+                                <div
+                                    onClick={() => {
+                                        setCurrentChat(chat)
+                                    }} >
+                                    <Conversation
+                                        data={chat}
+                                        currentUserId={user._id}
+                                        online={checkOnlineStatus(chat)}
+                                    />
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            {/* Right Side */}
-            <div className="Right-side-chat ">
-                <div style={{ width: "20rem", alignSelf: "flex-end" }} >
-                    <div className="navIcon">
-                        <Link to='../home' >
-                            <img src={home} alt="" />
-                        </Link>
-                        <UilSetting />
-                        <img src={note} alt="" />
-                        <Link to='../chat' >
-                            <img src={comment} alt="" />
-                        </Link>
+                {/* Right Side */}
+                <div className="Right-side-chat ">
+                    <div style={{ width: "20rem", alignSelf: "flex-end" }} >
+                        <div className="navIcon">
+                            <Link to='../home' >
+                                <img src={home} alt="" />
+                            </Link>
+                            <UilSetting />
+                            <img src={note} alt="" />
+                            <Link to='../chat' >
+                                <img src={comment} alt="" />
+                            </Link>
+                        </div>
                     </div>
-                </div>
-                {/* Chat body */}
-                <ChatBox
-                    chat={currentChat}
-                    currentUser={user._id}
-                    setSendMessage={setSendMessage}
-                    receiveMessage={receiveMessage}
-                />
+                    {/* Chat body */}
+                    <ChatBox
+                        chat={currentChat}
+                        currentUser={user._id}
+                        setSendMessage={setSendMessage}
+                        receiveMessage={receiveMessage}
+                    />
 
+                </div>
             </div>
-        </div>
         </div>
     )
 }

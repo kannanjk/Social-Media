@@ -122,7 +122,7 @@ function ChatBox({ chat, currentUser, setSendMessage, receiveMessage }) {
                             />
                             <div className="sent-button button" onClick={handleSend} >Sent</div>
                             <input
-                               type="file" name=""
+                                type="file" name=""
                                 id="" ref={imageRef}
                                 style={{ display: "none" }}
                             />

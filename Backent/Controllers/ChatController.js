@@ -20,7 +20,7 @@ export const userchat = async (req, res) => {
             {
                 members: { $in: [req.params.userId] }
             }
-        )
+        ) 
         res.status(200).json(chat)
     } catch (error) {
         res.status(500).json(error)

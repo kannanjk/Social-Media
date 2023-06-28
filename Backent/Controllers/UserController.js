@@ -7,13 +7,13 @@ export const getAllUser = async (req, res) => {
     try {
         let users = await UserModel.find()
 
-        users =users.map((user)=>{
-            const {password,...otherDetails} = user._doc
+        users = users.map((user) => {
+            const { password, ...otherDetails } = user._doc
             return otherDetails
         })
         res.status(200).json(users)
     } catch (error) {
-       res.status(500).json(error)
+        res.status(500).json(error)
     }
 }
 
@@ -35,12 +35,12 @@ export const getUser = async (req, res) => {
 // Update a User
 export const updateUser = async (req, res) => {
     const id = req.params.id
-    console.log("kannan"+id);
+    console.log("kannan" + id);
     const { _id, password } = req.body
     if (id === _id) {
-
         try {
             if (password) {
+                console.log("jishnu");
                 const salt = await bcrypt.genSalt(10)
                 req.body.password = await bcrypt.hash(password, salt)
             }
@@ -54,7 +54,7 @@ export const updateUser = async (req, res) => {
                 process.env.JWT_KEY,
                 { expiresIn: "1h" }
             )
-            res.status(200).json(user, token)
+            res.status(200).json({user, token})
         } catch (error) {
             res.status(500).json(error)
         }
@@ -90,7 +90,7 @@ export const followUser = async (req, res) => {
 
     if (_id === id) {
         res.status(403).json("Action forbidden")
-    } else { 
+    } else {
         try {
             const followUser = await UserModel.findById(id)
             const followingUser = await UserModel.findById(_id)

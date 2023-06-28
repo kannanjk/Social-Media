@@ -7,7 +7,7 @@ const io = require('socket.io')(8800, {
 let activeUsers = []
 
 io.on("connection", (socket) => {
-    // Add New User
+    // Add New User  
     socket.on("new-user-add", (newUserId) => {
         // if user is not added previously
         if (!activeUsers.some((user) => user.userId === newUserId)) {
@@ -24,7 +24,7 @@ io.on("connection", (socket) => {
         // send all active users to all users
         io.emit("get-users", activeUsers)
     })
-                                                   
+
     // Sent Message to a specific user
     socket.on("sent-message", (data) => {
         const { receiverId } = data
@@ -35,5 +35,4 @@ io.on("connection", (socket) => {
             io.to(user.socketId).emit("receive-message", data)
         }
     })
-
 })

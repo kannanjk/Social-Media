@@ -66,27 +66,26 @@ export const likePost = async (req, res) => {
 }
 
 // comment Post
-export const commentPost = async (req, res) => {
-    try {
-        const postId = req.params.id
-        // const content =req.body
-    // console.log({content})
-        const newComment = new comments({
-            content:req.body.comment
-        })
-        console.log(newComment);
-        await PostModel.findOneAndUpdate({ _id: postId }, { 
-            $push: { comments: newComment }
-        }, { new: true })  
-         await newComment.save()
-        res.status(200).json("post commented")
-    } catch (error) {
-        res.status(500).json(error)
-        console.log(error);
-    }
-}
+// export const commentPost = async (req, res) => {
+//     try { 
+//         const postId = req.params.id
+//         // const content =req.body
+//     // console.log({content})
+//         const newComment = new comments({
+//             content:req.body.comment
+//         })
+//         await PostModel.findOneAndUpdate({ _id: postId }, { 
+//             $push: { comments: newComment }
+//         }, { new: true })  
+//          await newComment.save()
+//         res.status(200).json("post commented")
+//     } catch (error) {
+//         res.status(500).json(error)
+//         console.log(error);
+//     }
+// }
 
-// Delete a post 
+//  Delete a post 
 export const deletePost = async (req, res) => {
 
     const id = req.params.id
@@ -110,7 +109,7 @@ export const deletePost = async (req, res) => {
 // get timeline post
 export const getTimeLinePost = async (req, res) => {
     const userId = req.params.id
-
+    
     try {
         const currentUserPost = await PostModel.find({ userId: userId })
         const followingPost = await UserModel.aggregate([

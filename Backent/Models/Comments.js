@@ -1,19 +1,13 @@
 import mongoose from "mongoose";
 
 const commentSchema = mongoose.Schema({
-    content: {
-        type:String  
-        // comment: {
-        //     type: String,
-        //     require: true
-        // } 
-    },
-    tag: Object,
-    reply: mongoose.Types.ObjectId,
-    likes: [{ type: mongoose.Types.ObjectId, ref: 'user' }],
-    user: { type: mongoose.Types.ObjectId, ref: 'user' }
+    content: {type: String,require:true},
+    postId: { type: mongoose.Types.ObjectId, ref: 'post' },
+    userId: { type: mongoose.Types.ObjectId, ref: 'user' },
+    firstname:{type:String,require:true,ref:'name'
+}
 },
-    {
+    { 
         timestamps: true
     }
 )

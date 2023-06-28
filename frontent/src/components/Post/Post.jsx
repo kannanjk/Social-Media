@@ -9,18 +9,15 @@ import { useSelector } from 'react-redux'
 import { likePost } from '../../Api/PostRequest'
 import Dropdown from '../Dropdown/Dropdown';
 import Comments from '../Comments/Comments';
-
+import {format} from 'timeago.js' 
 
 
 function Post({ data }) {
-  // console.log(data)
+     
   const { user } = useSelector((state) => state.authReducer.authData)
-
   const [modalOpened, setModalOpened] = useState(false)
   const [commentOpen, setCommentOpen] = useState(false)
-
   const [commentd, setcomment] = useState(data.comments.length)
-
   
   const [liked, setLiked] = useState(data.likes.includes(user._id));
   const [likes, setLikes] = useState(data.likes.length)
@@ -29,7 +26,7 @@ function Post({ data }) {
     likePost(data._id, user._id);
     setLiked((prev) => !prev);
     liked ? setLikes((prev) => prev - 1) : setLikes((prev) => prev + 1)
-  };
+  };   
 
 
   // const postDelete = () => {
@@ -62,11 +59,11 @@ function Post({ data }) {
           setModalOpened={setModalOpened}
           data={data}
         />
-      </div>
+      </div> 
       <div className="details">
         <img src={data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : null} alt="" />
-        <span className='name' > kannan </span>
-        <span className='name' >1 min ago</span>
+        <span className='name' > {data.user} </span>
+        <span className='name' > {format(data.createdAt)} </span>
       </div>
       <span style={{ marginLeft: "5%" }}> {data.desc} </span>
       <img src={data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : null} alt="" />

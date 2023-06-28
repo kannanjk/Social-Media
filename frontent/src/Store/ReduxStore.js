@@ -12,7 +12,7 @@ function saveToLocalStorage(store) {
         window.localStorage.setItem('store', serialzedStore)
     } catch (error) {
         console.log(error);
-    } 
+    }
 }
 
 function loadFormLocalStore() {

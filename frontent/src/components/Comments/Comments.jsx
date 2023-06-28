@@ -1,29 +1,44 @@
 import React, { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { createComment } from '../../Api/PostRequest';
+// import { createComment } from '../../Api/PostRequest';
 import './Comments.scss'
+import { useSelector } from 'react-redux';
+// import {createComment} from '../../Actions/CommentAction.js'
+import Comment from '../Comment';
+import axios from 'axios';
+import { message } from 'antd'
+const API = axios.create({ baseURL: "http://localhost:5000" })
 
-function Comments({ data }) {
-  let { posts, loading } = useSelector((state) => state.postReducer)
-  const [content, setContent] = useState('')
-  // const dispatch = useDispatch()
+function Comments({data}) {
+  const { user } = useSelector((state) => state.authReducer.authData)
+  console.log();
 
-  const handlesubmit = (e) => {
+  const [content, setContent] = useState()
+  const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER  
+
+  const handlesubmit = async (e) => {
     e.preventDefault()
     if (!content.trim()) return
     setContent('')
-
-
-    createComment(data._id, content);
-
+    const newComment={
+      content,
+      postId:data._id,
+      user:user._id,
+      firstname:user.firstname
+    }
+    const res = await API.post('/post/comment',newComment)
+    if (res.data.success) {
+      message.success(res.data.message)
+    }else{
+      message.error("Somthing error")
+    }
   }
-  console.log(data.comments._id)
-
 
   return (
     <div className="comments">
       <div className="write">
-        <img src='https://www.clipartkey.com/mpngs/m/152-1520367_user-profile-default-image-png-clipart-png-download.png' alt="" />
+        <img src={user.coverpicture
+                        ? serverPublic + user.profilePicture
+                        : serverPublic + "defaultCover.png"} alt="" />
         <input
           type="text"
           placeholder='Write a comment'
@@ -32,21 +47,17 @@ function Comments({ data }) {
         />
         <button type='submit' onClick={handlesubmit} >Sent</button>
       </div>
-      <div className="comment">
-        <img src={data.proPic} alt="" />
+      <div  className="comment">
         <div className="info">
 
-        {posts.map((post, id) => {
-          // ?return <Post data={post} key={id} />
-
-})}
-
-
-          <span className='date' >1 hour ago</span>
+          {
+           
+             <Comment   data={data} />
+            }  
         </div>
-      </div>
-      {/* //  ))} */}
 
+
+      </div>
     </div>
   )
 }
