@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react'
-// import { getComment } from '../Api/PostRequest.js'
+import React, { useEffect, useState } from 'react' 
 import axios from 'axios';
 import Comm from './Comm';
 const API = axios.create({ baseURL: "http://localhost:5000" })

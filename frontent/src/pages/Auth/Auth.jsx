@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 import './Auth.scss'
 import { useDispatch } from 'react-redux'
 import { logIn, signUp } from '../../Actions/AuthAction'
+import { useNavigate } from 'react-router-dom'
 
 function Auth() {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const [isSignup, setIsSignup] = useState(true)
   const [data, setdata] = useState({
     firstname: "",
@@ -15,6 +17,7 @@ function Auth() {
   })
 
   const [confirmPass, setConfirmPss] = useState(true)
+  
   const handleChange = (e) => {
     setdata({ ...data, [e.target.name]: e.target.value })
   }
@@ -39,6 +42,11 @@ function Auth() {
       password: "",
       confirmpass: ""
     })
+  }
+
+  //forgotpass
+  const forgotpass = ()=>{
+   navigate('/forgotpass')
   }
 
   return (
@@ -194,7 +202,8 @@ function Auth() {
           setIsSignup((prev) => !prev);
           reseForm()
         }}>
-        {isSignup ? "Already i have an account!" : "Create New Account ?"}
+        {isSignup ? "Already i have an account!" : "Create New Account ? "}
+        {isSignup?null: <a onClick={forgotpass}>Forgot PassWord</a>}
       </span>
     </div>
   )

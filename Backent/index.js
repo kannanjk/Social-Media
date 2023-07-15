@@ -9,6 +9,8 @@ import PostRoute from './Routes/PostRoute.js'
 import uploadRouter from './Routes/UploadRoute.js'
 import ChatRoute from './Routes/ChatRoute.js'
 import MessageRoute from './Routes/MessageRoute.js'
+import sotryroute from './Routes/StoryUpload.js' 
+import storyRoute from './Routes/StoryRoute.js'
 
 // Routes
 const app = express()
@@ -30,16 +32,20 @@ mongoose
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
-    .then(() => app.listen(process.env.PORT, () =>
-        console.log(`Listening at ${process.env.PORT}`)
-    )).catch((e) => {
+    .then(() => {
+        console.log(`DataBase connected`)   
+    }).catch((e) => {
         console.log(e);
     })
-
-// useage of routes   
+    app.listen(process.env.PORT, () =>{
+    console.log(`Listening at ${process.env.PORT}`);
+    }) 
+// useage of routes    
 app.use('/auth', AuthRoute)
-app.use('/user', UserRoute)
+app.use('/user', UserRoute) 
 app.use('/post', PostRoute)
+app.use('/story',storyRoute)
 app.use('/upload', uploadRouter)
-app.use("/chat", ChatRoute)
+app.use('/story',sotryroute) 
+app.use("/chat", ChatRoute)  
 app.use('/message', MessageRoute)

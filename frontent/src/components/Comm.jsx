@@ -3,6 +3,7 @@ import { format } from 'timeago.js'
 import '../Data/Comment.css'
 
 function Comm({ comm }) {
+    console.log(comm);
     return (
         <div>
             {

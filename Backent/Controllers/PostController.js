@@ -1,25 +1,23 @@
 import PostModel from "../Models/PostModel.js";
 import mongoose from "mongoose";
 import UserModel from "../Models/UserModel.js";
-import comments from '../Models/Comments.js'
 
-// Create New Post 
+// Create New Post  
 export const createPost = async (req, res) => {
     const newPost = new PostModel(req.body)
-    try {
+    try { 
         await newPost.save()
         res.status(200).json(newPost)
     } catch (error) {
         res.status(500).json(error)
     }
 }
- 
+
 // Get a Post
 export const getPost = async (req, res) => {
     const id = req.params.id
     try {
         const post = await PostModel.findById(id)
-        console.log(post);
         res.status(200).json(post)
     } catch (error) {
         res.status(500).json(error)
@@ -43,7 +41,7 @@ export const updatePost = async (req, res) => {
         res.status(500).json(error)
     }
 }
-  
+
 // like/dislike a post
 export const likePost = async (req, res) => {
 
@@ -64,26 +62,6 @@ export const likePost = async (req, res) => {
     }
 
 }
-
-// comment Post
-// export const commentPost = async (req, res) => {
-//     try { 
-//         const postId = req.params.id
-//         // const content =req.body
-//     // console.log({content})
-//         const newComment = new comments({
-//             content:req.body.comment
-//         })
-//         await PostModel.findOneAndUpdate({ _id: postId }, { 
-//             $push: { comments: newComment }
-//         }, { new: true })  
-//          await newComment.save()
-//         res.status(200).json("post commented")
-//     } catch (error) {
-//         res.status(500).json(error)
-//         console.log(error);
-//     }
-// }
 
 //  Delete a post 
 export const deletePost = async (req, res) => {
@@ -109,7 +87,7 @@ export const deletePost = async (req, res) => {
 // get timeline post
 export const getTimeLinePost = async (req, res) => {
     const userId = req.params.id
-    
+
     try {
         const currentUserPost = await PostModel.find({ userId: userId })
         const followingPost = await UserModel.aggregate([
@@ -133,8 +111,7 @@ export const getTimeLinePost = async (req, res) => {
                 }
             }
         ])
-        res
-            .status(200)
+        res.status(200)
             .json(currentUserPost.concat(...followingPost[0].followingPost)
                 .sort((a, b) => {
                     return b.createAt - a.createAt
