@@ -20,7 +20,7 @@ function Conversation({ data, currentUserId, online }) {
             }
         }
         getUserData()
-    }, [])
+    },[])
     return (
         <>
             <div className="follower conversation">

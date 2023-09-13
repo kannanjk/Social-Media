@@ -2,14 +2,16 @@ import mongoose from "mongoose";
 
 const ChatSchema = mongoose.Schema(
     {
-        members: { 
+        members: {
             type: Array
         }
     },
-    {   
-        timestamps:true
+    {
+        timestamps: true
     }
 )
 
-const ChatModel = mongoose.model("Chat",ChatSchema)
-export default ChatModel
+// sweety sree rock
+
+const ChatModel = mongoose.model("Chat", ChatSchema)
+export default ChatModel    

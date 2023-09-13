@@ -1,6 +1,5 @@
 import { Modal, useMantineTheme } from '@mantine/core'
 import React, { useEffect, useState } from 'react'
-import comment from '../../image/comment.png'
 import { useSelector } from 'react-redux'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
@@ -14,6 +13,7 @@ function Profi({ modalOpened, setModalOpened, person }) {
     const theme = useMantineTheme();
     const ji = msg.chat
     const navigate = useNavigate()
+    // console.log(person);
 
     useEffect(() => {
         const findmsg = async () => {
@@ -25,6 +25,7 @@ function Profi({ modalOpened, setModalOpened, person }) {
             }
         }
         findmsg()
+      
     },)
 
     const startMsg = async () => {
@@ -38,6 +39,15 @@ function Profi({ modalOpened, setModalOpened, person }) {
             navigate('/chat')
         } catch (error) {
             console.log(error)
+        }
+    }
+
+    const findpost =async()=>{
+        try {
+            const post = await API.get(`/post/getpost/${person._id}`)
+            console.log(post);
+        } catch (error) {
+            
         }
     }
 
@@ -60,6 +70,7 @@ function Profi({ modalOpened, setModalOpened, person }) {
                 ji ? null :  <button className='button ps-button ' onClick={()=>startMsg()} style={{marginLeft:'500px',marginTop:"-25px"}}>Start Message</button>
 
             }
+            <button onClick={()=>findpost()}>show post </button>
         </Modal>
     )
 }

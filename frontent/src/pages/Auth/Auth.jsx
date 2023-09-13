@@ -17,7 +17,7 @@ function Auth() {
   })
 
   const [confirmPass, setConfirmPss] = useState(true)
-  
+
   const handleChange = (e) => {
     setdata({ ...data, [e.target.name]: e.target.value })
   }
@@ -45,8 +45,8 @@ function Auth() {
   }
 
   //forgotpass
-  const forgotpass = ()=>{
-   navigate('/forgotpass')
+  const forgotpass = () => {
+    navigate('/forgotpass')
   }
 
   return (
@@ -203,7 +203,7 @@ function Auth() {
           reseForm()
         }}>
         {isSignup ? "Already i have an account!" : "Create New Account ? "}
-        {isSignup?null: <a onClick={forgotpass}>Forgot PassWord</a>}
+        {isSignup ? null : <button onClick={forgotpass}>Forgot password</button>}
       </span>
     </div>
   )

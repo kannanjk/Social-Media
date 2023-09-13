@@ -30,7 +30,7 @@ function InfoCard() {
             }
         }
         fetchProfileUser()
-    }, [user]) 
+    }) 
 
   
     return (

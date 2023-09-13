@@ -6,6 +6,7 @@ const postSchema = mongoose.Schema({
         required: true
     },
     desc: String,
+    hashtag:[],
     likes: [],
     comments: [],
     image: String

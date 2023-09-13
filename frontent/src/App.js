@@ -8,7 +8,7 @@ import Chat from './pages/Chat/Chat';
 import ForgotPass from './pages/Auth/ForgotPass';
 
 function App() {
-  const user = useSelector((state) => state.authReducer.authData)
+  const user = useSelector(state => state.authReducer.authData)
   return (
     <div className="App">
       <div className='blur' style={{ top: '-18%', right: '0' }} ></div>
@@ -42,11 +42,15 @@ function App() {
             ? <Chat />
             : <Navigate to='../auth' />} />
 
+
+
         <Route path='/forgotpass'
           element={
             <ForgotPass />
           }
         />
+
+       
 
         <Route
           path="*"

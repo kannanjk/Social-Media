@@ -28,7 +28,7 @@ app.use(cors())
 dotenv.config()
 
 mongoose
-    .connect('mongodb+srv://jishnu:iV1nYHf77FYnp8Ju@cluster0.zppmaeb.mongodb.net/SocialMedia?retryWrites=true&w=majority', {
+    .connect(process.env.MONGO_DB, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
@@ -49,3 +49,5 @@ app.use('/upload', uploadRouter)
 app.use('/story',sotryroute) 
 app.use("/chat", ChatRoute)  
 app.use('/message', MessageRoute)
+
+// MONGO_DB = 'mongodb+srv://jishnu:iV1nYHf77FYnp8Ju@cluster0.zppmaeb.mongodb.net/MyDB?retryWrites=true&w=majority'

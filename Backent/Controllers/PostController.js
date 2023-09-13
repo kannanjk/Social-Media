@@ -5,7 +5,7 @@ import UserModel from "../Models/UserModel.js";
 // Create New Post  
 export const createPost = async (req, res) => {
     const newPost = new PostModel(req.body)
-    try { 
+    try {
         await newPost.save()
         res.status(200).json(newPost)
     } catch (error) {
@@ -121,3 +121,15 @@ export const getTimeLinePost = async (req, res) => {
         res.status(500).json(error)
     }
 }        
+
+export const userPost = async(req,res)=>{
+    const {id} = req.params
+    const post = await PostModel.find({userId:id})
+     if (post) {
+        res.send({
+            success:true,
+            post:post
+        })
+     }
+    // console.log(post);
+}

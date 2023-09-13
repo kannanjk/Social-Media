@@ -1,8 +1,4 @@
-import {
-    legacy_createStore as createStore,
-    applyMiddleware,
-    compose
-} from "redux"
+import { legacy_createStore as createStore, applyMiddleware, compose } from "redux"
 import thunk from "redux-thunk"
 import { reducers } from "../Reducers/indes"
 
@@ -25,8 +21,16 @@ function loadFormLocalStore() {
         return undefined
     }
 }
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const persistedState = loadFormLocalStore()
-const store = createStore(reducers, persistedState, composeEnhancers(applyMiddleware(thunk)))
-store.subscribe(() => saveToLocalStorage(store.getState()))
+const store = createStore(
+    reducers,
+    persistedState,
+    composeEnhancers(applyMiddleware(thunk))
+)
+console.log(store);
+store.subscribe(() =>
+    saveToLocalStorage(store.getState())
+)
 export default store 
