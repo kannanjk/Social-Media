@@ -8,27 +8,26 @@ import axios from 'axios';
 import { message } from 'antd'
 const API = axios.create({ baseURL: "http://localhost:5000" })
 
-function Comments({data}) {
+function Comments({ data }) {
   const { user } = useSelector((state) => state.authReducer.authData)
-  console.log();
 
   const [content, setContent] = useState()
-  const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER  
+  const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
 
   const handlesubmit = async (e) => {
     e.preventDefault()
     if (!content.trim()) return
     setContent('')
-    const newComment={
+    const newComment = {
       content,
-      postId:data._id,
-      user:user._id,
-      firstname:user.firstname
+      postId: data._id,
+      user: user._id,
+      firstname: user.firstname
     }
-    const res = await API.post('/post/comment',newComment)
+    const res = await API.post('/post/comment', newComment)
     if (res.data.success) {
       message.success(res.data.message)
-    }else{
+    } else {
       message.error("Somthing error")
     }
   }
@@ -37,23 +36,24 @@ function Comments({data}) {
     <div className="comments">
       <div className="write">
         <img src={user.coverpicture
-                        ? serverPublic + user.profilePicture
-                        : serverPublic + "defaultCover.png"} alt="" />
+          ? serverPublic + user.profilePicture
+          : serverPublic + "defaultCover.png"} alt="" />
         <input
           type="text"
           placeholder='Write a comment'
           value={content}
           onChange={e => setContent(e.target.value)}
         />
-        <button type='submit' onClick={handlesubmit} >Sent</button>
+        {
+          content ?
+            <button type='submit' onClick={handlesubmit} >Sent</button> : null
+        }
       </div>
-      <div  className="comment">
+      <div className="comment">
         <div className="info">
-
           {
-           
-             <Comment   data={data} />
-            }  
+            <Comment data={data} />
+          }
         </div>
 
 

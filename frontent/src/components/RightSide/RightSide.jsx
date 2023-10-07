@@ -12,32 +12,39 @@ import OnlineFriend from '../OnlineFriend/OnlineFriend'
 function RightSide() {
   const [modelopened, setModelopened] = useState(false)
   return (
-     <div className="con">
-    <div className="rightSide">
-      <div className="navIcon">
-        <Link to='../home' >
-        <img src={home} alt="" />
-        </Link>
-        <UilSetting />
-        <img src={note} alt="" />
-        <Link to='../chat' >
-        <img src={comment} alt="" />
-        </Link>
+    <div className="con">
+      <div className="rightSide">
+        <div className="navIcon">
+
+          <Link to='../home' >
+            <img src={home} alt="" />
+          </Link>
+
+          <Link to='../setings'>
+            <UilSetting />
+          </Link>
+
+          <img src={note} alt="" />
+
+          <Link to='../chat' >
+            <img src={comment} alt="" />
+          </Link>
+        </div>
+
+        <TrendCard />
+        <button className="button r-button"
+          onClick={() => setModelopened(true)} >
+          share
+        </button>
+        <ShereModel modalOpened={modelopened}
+          setModalOpened={setModelopened} />
       </div>
-      <TrendCard />
-      <button className="button r-button"
-        onClick={() => setModelopened(true)} >
-        share
-      </button>
-      <ShereModel modalOpened={modelopened}
-        setModalOpened={setModelopened} />
+      <div style={{ marginTop: "16%" }}>
+        <p style={{ marginBottom: "11%" }} >Online Friends</p>
+        <OnlineFriend />
+      </div>
     </div>
-    <div style={{marginTop:"16%"}}>
-    <h3  style={{marginBottom:"11%"}} >Online Friends</h3>
-    <OnlineFriend/>
-    </div>
-     </div>
-  ) 
+  )
 }
 
 export default RightSide

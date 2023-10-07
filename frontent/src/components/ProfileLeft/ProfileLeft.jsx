@@ -7,7 +7,7 @@ function ProfileLeft() {
   return (
     <div className="ProfileLeft">
       <LogoSearch />
-      <InfoCard />
+      <InfoCard /> 
       <Followers />
     </div>
   )

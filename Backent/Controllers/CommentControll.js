@@ -2,8 +2,6 @@ import comments from "../Models/Comments.js";
 import PostModel from "../Models/PostModel.js"
 
 export const createComment = async (req, res) => {
-    console.log("kannan");
-    console.log(req.body);
     try {
         const { content, postId, user ,firstname} = req.body
         const newComment = new comments({

@@ -71,7 +71,7 @@ function Chat() {
             <div className="Chat">
                 {/* Left Side */}
                 <div className="Left-side-chat ">
-                    <Logosearch />
+                    <Logosearch /> 
                     <div className="Chat-container">
                         <h2>Chats</h2>
                         <div className="Chat-list">
@@ -98,7 +98,9 @@ function Chat() {
                             <Link to='../home' >
                                 <img src={home} alt="" />
                             </Link>
-                            <UilSetting />
+                            <Link to='../setings'>
+                                <UilSetting />
+                            </Link>
                             <img src={note} alt="" />
                             <Link to='../chat' >
                                 <img src={comment} alt="" />

@@ -9,7 +9,6 @@ function ForgotPass() {
     const navigate  =useNavigate()
 
     const forgotPas = async (value) => {
-        console.log(value);
         try { 
             const res = await API.post('/auth/forgotpass', value)
             if (res.data.success) { 

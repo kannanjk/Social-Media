@@ -9,6 +9,7 @@ import { UilSchedule } from '@iconscout/react-unicons'
 import { UilTimes } from '@iconscout/react-unicons'
 import { useDispatch, useSelector } from 'react-redux'
 import { uploadImage, uploadPost } from '../../Actions/UploadAction'
+import swal from 'sweetalert'
 
 function PostShere() {
     const dispatch = useDispatch()
@@ -46,9 +47,17 @@ function PostShere() {
             } catch (error) {
                 console.log(error)
             }
+            dispatch(uploadPost(newPost))
+            reset()
+        } else {
+            swal({
+                title: 'Select a image ',
+                icon: 'warning',
+                buttons: true,
+                dangerMode: true,
+            })
         }
-        dispatch(uploadPost(newPost))
-        reset()
+
     }
     const reset = () => {
         setImage(null)

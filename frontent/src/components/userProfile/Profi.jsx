@@ -7,27 +7,22 @@ const API = axios.create({ baseURL: "http://localhost:5000" })
 
 
 function Profi({ modalOpened, setModalOpened, person }) {
-    // console.log(msg);
     const { user } = useSelector((state) => state.authReducer.authData)
     const [msg, setMsg] = useState([])
+    const [post , setPost]=useState([])
     const theme = useMantineTheme();
     const ji = msg.chat
     const navigate = useNavigate()
-    // console.log(person);
 
-    useEffect(() => {
-        const findmsg = async () => {
-            try {
-                const res = await API.get(`/chat/find/${person._id}/${user._id}`)
-                setMsg(res.data)
-            } catch (error) {
-                console.log(error)
-            }
+    const findmsg = async () => {
+        try {  
+            const res = await API.get(`/chat/find/${person._id}/${user._id}`)
+            setMsg(res.data)
+        } catch (error) {
+            console.log(error)
         }
-        findmsg()
-      
-    },)
-
+    }
+   
     const startMsg = async () => {
         try {
             const obj={
@@ -43,13 +38,19 @@ function Profi({ modalOpened, setModalOpened, person }) {
     }
 
     const findpost =async()=>{
-        try {
+        try { 
             const post = await API.get(`/post/getpost/${person._id}`)
-            console.log(post);
+            setPost(post.data.post)
         } catch (error) {
-            
-        }
+          console.log(error);  
+        } 
     }
+
+    // useEffect(() => {
+       
+        findmsg() 
+      
+
 
     return (
         <Modal
@@ -69,10 +70,12 @@ function Profi({ modalOpened, setModalOpened, person }) {
             {
                 ji ? null :  <button className='button ps-button ' onClick={()=>startMsg()} style={{marginLeft:'500px',marginTop:"-25px"}}>Start Message</button>
 
-            }
+            } 
             <button onClick={()=>findpost()}>show post </button>
+
+            <span> {post.desc } </span>
         </Modal>
     )
 }
-
+ 
 export default Profi

@@ -4,6 +4,7 @@ import { getUser } from '../../Api/UserRequest'
 import './ChatBox.css'
 import { format } from 'timeago.js'
 import InputEmoji from 'react-input-emoji'
+import swal from 'sweetalert'
 
 function ChatBox({ chat, currentUser, setSendMessage, receiveMessage }) {
 
@@ -56,6 +57,7 @@ function ChatBox({ chat, currentUser, setSendMessage, receiveMessage }) {
             text: newMessage,
             chatId: chat._id,
         }
+
         const receiverId = chat.members.find((id) => id !== currentUser)
         // send message to Socket server
         setSendMessage({ ...message, receiverId })
@@ -120,7 +122,10 @@ function ChatBox({ chat, currentUser, setSendMessage, receiveMessage }) {
                                 value={newMessage}
                                 onChange={handleChange}
                             />
-                            <div className="sent-button button" onClick={handleSend} >Sent</div>
+                            {
+                                newMessage ?
+                                    <div className="sent-button button" onClick={handleSend} >Sent</div> : null
+                            }
                             <input
                                 type="file" name=""
                                 id="" ref={imageRef}

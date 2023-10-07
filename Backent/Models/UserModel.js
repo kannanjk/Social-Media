@@ -36,7 +36,7 @@ const UserSchema = mongoose.Schema({
     following:[]
 },  
 {
-    timestamps:true
+    timestamps:true 
 }
 )
   

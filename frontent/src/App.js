@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 import Profile from './pages/Profile/Profile';
 import Chat from './pages/Chat/Chat';
 import ForgotPass from './pages/Auth/ForgotPass';
+import Setings from './pages/Setings/Setings';
 
 function App() {
   const user = useSelector(state => state.authReducer.authData)
@@ -42,6 +43,10 @@ function App() {
             ? <Chat />
             : <Navigate to='../auth' />} />
 
+        <Route path='/setings'
+          element={user
+            ? <Setings />
+            : <Navigate to='../auth' />} />
 
 
         <Route path='/forgotpass'
@@ -50,7 +55,7 @@ function App() {
           }
         />
 
-       
+
 
         <Route
           path="*"

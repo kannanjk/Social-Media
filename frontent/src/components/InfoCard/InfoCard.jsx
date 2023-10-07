@@ -6,11 +6,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import * as UserApi from '../../Api/UserRequest.js'
 import { logOut } from '../../Actions/AuthAction'
- 
+
 function InfoCard() {
 
     const dispatch = useDispatch()
-    const params = useParams() 
+    const params = useParams()
     const [modalOpened, setModalOpened] = useState(false)
     const profileUserId = params.id
     const [profileUser, setProfileUser] = useState({})
@@ -30,50 +30,50 @@ function InfoCard() {
             }
         }
         fetchProfileUser()
-    }) 
+    })
 
-  
+
     return (
-         <div className="con">
-         <div className="InfoCard">
-            <div className="infoHead">
-                <h4>Profile Info</h4>
-                {user._id === profileUserId ? (  
-                    <div>
-                        <UilPen
-                            width='2rem'
-                            height='2rem'
-                            onClick={() => setModalOpened(true)} />
-                        <ProfileModel
-                            modalOpened={modalOpened}
-                            setModalOpened={setModalOpened}
-                            data={user}
-                        />
-                    </div>
-                ) : (null)}
+        <div className="con">
+            <div className="InfoCard">
+                <div className="infoHead">
+                    <h4>Profile Info</h4>
+                    {user._id === profileUserId ? (
+                        <div>
+                            <UilPen 
+                                width='2rem'
+                                height='2rem'
+                                onClick={() => setModalOpened(true)} />
+                            <ProfileModel
+                                modalOpened={modalOpened}
+                                setModalOpened={setModalOpened}
+                                data={user}
+                            />
+                        </div>
+                    ) : (null)}
 
+                </div>
+                <div className="info">
+                    <span>
+                        <b>Status in </b>
+                    </span>
+                    <span> {profileUser.relationShip} </span>
+                </div>
+                <div className="info">
+                    <span>
+                        <b>Lives in</b>
+                    </span>
+                    <span> {profileUser.livesin} </span>
+                </div>
+                <div className="info">
+                    <span>
+                        <b>Works at </b>
+                    </span>
+                    <span> {profileUser.workAt} </span>
+                </div>
+                <button className='button  ' onClick={handleLogout} >Logout</button>
             </div>
-            <div className="info">
-                <span>
-                    <b>Status in </b>
-                </span>
-                <span> {profileUser.relationShip} </span>
-            </div>
-            <div className="info">
-                <span>
-                    <b>Lives in</b>
-                </span>
-                <span> {profileUser.livesin} </span>
-            </div>
-            <div className="info">
-                <span>
-                    <b>Works at </b>
-                </span>
-                <span> {profileUser.workAt} </span>
-            </div>
-            <button className='button  ' onClick={handleLogout} >Logout</button>
         </div>
-         </div>
     )
 }
 
