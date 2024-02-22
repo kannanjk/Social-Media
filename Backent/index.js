@@ -41,7 +41,7 @@ mongoose
     console.log(`Listening at ${process.env.PORT}`);
     }) 
 // useage of routes    
-app.use('/auth', AuthRoute)
+app.use('/auth', AuthRoute) 
 app.use('/user', UserRoute) 
 app.use('/post', PostRoute)
 app.use('/story',storyRoute)
@@ -50,4 +50,4 @@ app.use('/story',sotryroute)
 app.use("/chat", ChatRoute)  
 app.use('/message', MessageRoute)
 
-// MONGO_DB = 'mongodb+srv://jishnu:iV1nYHf77FYnp8Ju@cluster0.zppmaeb.mongodb.net/MyDB?retryWrites=true&w=majority'
+// MONGO_DB = 'mongodb+srv://jishnu:iV1nYHf77FYnp8Ju@cluster0.zppmaeb.mongodb.net/MyDB?retryWrites=true&w=majority' 

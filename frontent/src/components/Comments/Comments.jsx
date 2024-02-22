@@ -22,7 +22,8 @@ function Comments({ data }) {
       content,
       postId: data._id,
       user: user._id,
-      firstname: user.firstname
+      firstname: user.firstname,
+      profilePicture:user.profilePicture
     }
     const res = await API.post('/post/comment', newComment)
     if (res.data.success) {

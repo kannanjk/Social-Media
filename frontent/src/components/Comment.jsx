@@ -5,10 +5,10 @@ const API = axios.create({ baseURL: "http://localhost:5000" })
 
 function Comment({ data }) {
     const [comment, setComment] = useState([])
+    const use = comment.user
     const comm = comment.data
-    console.log(comm.userId);
     useEffect(() => {
-        const comment = async () => {
+        const comment = async () => { 
             try {
                 const res = await API.get(`post/${data._id}/comment`)
                 setComment(res.data)
@@ -17,13 +17,11 @@ function Comment({ data }) {
             }
         }
         comment()
-    },)
+    },) 
 
     return (
         <div >
-            {
-                <Comm comm={comm} />
-            }
+            <Comm comm={comm} use={use} />
         </div>
     )
 }

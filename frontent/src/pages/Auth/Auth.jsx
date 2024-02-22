@@ -10,7 +10,7 @@ function Auth() {
   const [isSignup, setIsSignup] = useState(true)
   const [data, setdata] = useState({
     firstname: "",
-    lastname: "",
+    lastname: "", 
     username: "",
     password: "",
     confirmpass: ""

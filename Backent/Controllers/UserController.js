@@ -40,7 +40,6 @@ export const updateUser = async (req, res) => {
     if (id === _id) {
         try {
             if (password) {
-                console.log("jishnu");
                 const salt = await bcrypt.genSalt(10)
                 req.body.password = await bcrypt.hash(password, salt)
             }
